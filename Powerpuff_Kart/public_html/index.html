@@ -18,6 +18,16 @@ and open the template in the editor.
         <h1>Powerpuff Kart</h1>
         <x3d width="800" height="800">
             <scene id="scene">
+                <Viewpoint id="front" position="0 55 0" orientation="-1 0 0 1.5" description="camera" set_bind="true"></Viewpoint>
+                <shape>
+                <appearance>
+                    <material diffuseColor="brown"></material>
+                    <imageTexture url="grass_texture.jpg"></imageTexture>
+                </appearance>
+                <indexedFaceSet coordIndex="0 2 1 0 3 2">
+                    <coordinate point="-17 0 -17, 17 0 -17, 17 0 17,-17 0 17"></coordinate>
+                </indexedFaceSet>
+            </shape>
             </scene>
         </x3d>
     </body>
