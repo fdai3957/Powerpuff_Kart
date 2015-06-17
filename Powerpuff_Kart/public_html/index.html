@@ -11,6 +11,9 @@ and open the template in the editor.
         <script type="text/javascript" 
                 src="x3dom_js.js">
         </script>
+        <script type="text/javascript" 
+                src="kartMovement.js">
+        </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -19,15 +22,30 @@ and open the template in the editor.
         <x3d width="800" height="800">
             <scene id="scene">
                 <Viewpoint id="front" position="0 55 0" orientation="-1 0 0 1.5" description="camera" set_bind="true"></Viewpoint>
+                <transform DEF="trans">
+                    <shape id="box">
+                        <appearance>
+                            <material diffuseColor="blue"></material>
+                        </appearance>
+                        <box size="1.0 0.5 2.0"></box>
+                    </shape></transform>
+                <transform translation="16 0 16">
+                    <shape id="start1">
+                        <appearance>
+                            <material diffuseColor="red"></material>
+                        </appearance>
+                        <cylinder radius="0.5" height="1"></cylinder>
+                    </shape>
+                </transform>
                 <shape>
-                <appearance>
-                    <material diffuseColor="brown"></material>
-                    <imageTexture url="grass_texture.jpg"></imageTexture>
-                </appearance>
-                <indexedFaceSet coordIndex="0 2 1 0 3 2">
-                    <coordinate point="-17 0 -17, 17 0 -17, 17 0 17,-17 0 17"></coordinate>
-                </indexedFaceSet>
-            </shape>
+                    <appearance>
+                        <material diffuseColor="brown"></material>
+                        <imageTexture url="grass_texture.jpg"></imageTexture>
+                    </appearance>
+                    <indexedFaceSet coordIndex="0 2 1 0 3 2">
+                        <coordinate point="-17 0 -17, 17 0 -17, 17 0 17,-17 0 17"></coordinate>
+                    </indexedFaceSet>
+                </shape>
             </scene>
         </x3d>
     </body>
