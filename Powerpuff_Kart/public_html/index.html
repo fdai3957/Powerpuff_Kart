@@ -7,47 +7,14 @@ and open the template in the editor.
 <html>
     <head>
         <title>Powerpuff Kart</title>
-        <link rel="stylesheet" type="text/css" href="x3dom_css.css">
-        <script type="text/javascript" 
-                src="x3dom_js.js">
-        </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body { margin: 0; }
+            canvas { width: 100%; height: 100% }
+        </style>
     </head>
     <body>
-        <h1>Powerpuff Kart</h1>
-        <x3d width="800" height="800">
-            <scene id="scene">
-                <Viewpoint id="front" position="0 55 0" orientation="-1 0 0 1.5" description="camera" set_bind="true"></Viewpoint>
-                <transform id="trans">
-                    <shape id="box">
-                        <appearance>
-                            <material diffuseColor="blue"></material>
-                        </appearance>
-                        <box size="1.0 0.5 2.0"></box>
-                    </shape></transform>
-                <transform translation="16 0 16">
-                    <shape id="start1">
-                        <appearance>
-                            <material diffuseColor="red"></material>
-                        </appearance>
-                        <cylinder radius="0.5" height="1"></cylinder>
-                    </shape>
-                </transform>
-                <shape>
-                    <appearance>
-                        <material diffuseColor="brown"></material>
-                        <imageTexture url="grass_texture.jpg"></imageTexture>
-                    </appearance>
-                    <indexedFaceSet coordIndex="0 2 1 0 3 2">
-                        <coordinate point="-17 0 -17, 17 0 -17, 17 0 17,-17 0 17"></coordinate>
-                    </indexedFaceSet>
-                </shape>
-            </scene>
-        </x3d>
-        <script type="text/javascript" src="Wedge.js"></script>
-        <script type="text/javascript" 
-                src="kartMovement.js">
-        </script>
+        <script src="three.js"></script>
     </body>
 </html>
