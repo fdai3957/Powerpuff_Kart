@@ -15,6 +15,34 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <script src="three.js"></script>
+        <script type="text/javascript" src="three.js"></script>
+        <script type="text/javascript" src="placeholderObjects.js"></script>
+        <script type="text/javascript" src="wedge.js"></script>
+        <script>
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+            
+            //var car = carBox();
+            //scene.add(car);
+            
+            var wedge = createWegde();
+            scene.add(wedge);
+            camera.position.z = 20;
+            
+        
+            function render() {
+                requestAnimationFrame( render );
+                
+                wedge.rotation.x += 0.1;
+                wedge.rotation.y += 0.1;
+                
+                renderer.render( scene, camera );
+            }
+            render();
+        </script>
     </body>
 </html>

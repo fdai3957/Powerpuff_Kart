@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-function createWedge(id) {
+function createWedgeOld(id) {
     var iFSet = document.createElement("indexedFaceSet");
     var cPoint = document.createElement("coordinate");
     var shape = document.createElement("shape");
