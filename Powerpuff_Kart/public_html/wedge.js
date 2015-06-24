@@ -31,6 +31,15 @@ function createWegde(){
         color: 0x33CC33
     });
     
-    return new THREE.Mesh(geo, mat);
+    var mat2 = new THREE.MeshPhongMaterial({ 
+        color: 0x33CC33,
+        emissive: 0x000000,
+        specular: 0x111111,
+        shininess: 30,
+        shading: THREE.FlatShading,
+        
+    });
+    
+    return new THREE.Mesh(geo, mat2);
 }
 

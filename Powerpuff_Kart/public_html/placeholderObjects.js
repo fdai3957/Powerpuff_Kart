@@ -6,8 +6,9 @@
 
 function carBox(){
     var geo = new THREE.BoxGeometry(1, 0.5, 2);
-    var mat = new THREE.MeshBasicMaterial({ color: 0x3333FF });
+    var mat = new THREE.MeshLambertMaterial({ color: 0x3333FF });
     var box = new THREE.Mesh(geo, mat);
+    box.castShadow = true;
     
     return box;
 }
