@@ -17,7 +17,7 @@ function pushToKeyFramesArray(array){
 }
 
 var positionArray = new Array();
-var interpolationPointCount = 100;
+var interpolationPointCount = 1000;
 
 function fillPositionArray() {
     for(var i = 0; i < keyframesArray.length; i++){
@@ -88,59 +88,6 @@ function kurvenKeyFrames(mittelPunkt, radius, anfangsWinkel, anfangsRotation, an
     return keyArray;
 }
 
-
-//###########################################
-
-
-//current Index in positionArray
-var index = 0;
-var carSpeed1 = document.getElementById("speedInput1").value;
-var carSpeed2 = document.getElementById("speedInput1").value;
-var maxSpeed = 10;
-
-if(carSpeed1 == null) {
-    carSpeed1 = 0;
-}
-if(carSpeed2 == null) {
-    carSpeed2 = 0;
-}
-
-function moveCar(car){
-    car.position.x = positionArray[index][0];
-    car.position.z = -positionArray[index][2];
-    car.rotation.y = positionArray[index][3];
-    //car.position.x++;
-    //car.position.z++;
-    index = (index + carSpeed1) % positionArray.length;
-    
-    //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
-    //console.log(car.position.x + ", " + car.position.z);
-}
-
-function increaseSpeed (carName){
-    if(carName === "car1") {
-        if(carSpeed1 < maxSpeed){
-            document.getElementById("speedInput1").value++;
-        }
-    } else {
-        if(carSpeed2 < maxSpeed){
-            document.getElementById("speedInput2").value++;
-        }
-    }
-}
-
-function decreaseSpeed (carName){
-    if(carName === "car1") {
-        if(carSpeed1 > 0){
-            document.getElementById("speedInput1").value--;
-        }
-    } else {
-        if(carSpeed2 > 0){
-            document.getElementById("speedInput2").value--;
-        }
-    }
-}
-
 //###########################################
 
 fillKeyframesArray();
@@ -166,7 +113,8 @@ function logKeyArray() {
         console.log(text);
     }
 }
-logKeyArray();
+//logKeyArray();
+
 //###########################################
 
 var Key = {
@@ -174,6 +122,7 @@ var Key = {
 
     SPACE: 32,
     UP: 38,
+    W: 87,
 
     isDown: function(keyCode) {
         return this._pressed[keyCode];
@@ -190,6 +139,75 @@ var Key = {
 
 window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
 window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
+
+//###########################################
+
+
+//current Index in positionArray
+var index = 0;
+document.getElementById("speedInput1").value = 0;
+document.getElementById("speedInput1").value = 0;
+var carSpeed1 = 0;
+var carSpeed2 = 0;
+var maxSpeed = 100;
+
+function moveCar(car){
+    car.position.x = positionArray[index][0];
+    car.position.z = -positionArray[index][2];
+    car.rotation.y = positionArray[index][3];
+    
+    carControl("car1");
+    carSpeed1 = document.getElementById("speedInput1").value;
+    //console.log("CARSPEED: " + carSpeed1);
+    //console.log("VALUE: " + (index + carSpeed1) % positionArray.length);
+    index = index + parseInt(carSpeed1);
+    if(index >= positionArray.length) {
+        index = index - positionArray.length;
+    }
+    //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
+    //console.log(car.position.x + ", " + car.position.z);
+}
+
+function carControl(carName){
+    //console.log("CARCONTROL");
+    if(Key.isDown(Key.UP)) {
+        increaseSpeed(carName);
+    } else {
+        decreaseSpeed(carName);
+    }
+}
+
+function increaseSpeed (carName){
+    if(carName === "car1") {
+        if(carSpeed1 < maxSpeed){
+            document.getElementById("speedInput1").value++;
+            //console.log("INCSPEED: " + document.getElementById("speedInput1").value);
+            carSpeed1 = document.getElementById("speedInput1").value;
+        }
+    } else {
+        if(carSpeed2 < maxSpeed){
+            document.getElementById("speedInput2").value++;
+            carSpeed2 = document.getElementById("speedInput2").value;
+        }
+    }
+}
+
+function decreaseSpeed (carName){
+    if(carName === "car1") {
+        if(carSpeed1 > 0){
+            document.getElementById("speedInput1").value--;
+            //console.log("DECSPEED: " + document.getElementById("speedInput1").value);
+            carSpeed1 = document.getElementById("speedInput1").value;
+        }
+    } else {
+        if(carSpeed2 > 0){
+            document.getElementById("speedInput2").value--;
+            carSpeed2 = document.getElementById("speedInput2").value;
+        }
+    }
+}
+
+
 
 
 
