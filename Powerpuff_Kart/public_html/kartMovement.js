@@ -17,7 +17,7 @@ function pushToKeyFramesArray(array){
 }
 
 var positionArray = new Array();
-var interpolationPointCount = 10;
+var interpolationPointCount = 100;
 
 function fillPositionArray() {
     for(var i = 0; i < keyframesArray.length; i++){
@@ -94,6 +94,16 @@ function kurvenKeyFrames(mittelPunkt, radius, anfangsWinkel, anfangsRotation, an
 
 //current Index in positionArray
 var index = 0;
+var carSpeed1 = document.getElementById("speedInput1").value;
+var carSpeed2 = document.getElementById("speedInput1").value;
+var maxSpeed = 10;
+
+if(carSpeed1 == null) {
+    carSpeed1 = 0;
+}
+if(carSpeed2 == null) {
+    carSpeed2 = 0;
+}
 
 function moveCar(car){
     car.position.x = positionArray[index][0];
@@ -101,10 +111,34 @@ function moveCar(car){
     car.rotation.y = positionArray[index][3];
     //car.position.x++;
     //car.position.z++;
-    index = (index + 1) % positionArray.length;
+    index = (index + carSpeed1) % positionArray.length;
     
     //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
     //console.log(car.position.x + ", " + car.position.z);
+}
+
+function increaseSpeed (carName){
+    if(carName === "car1") {
+        if(carSpeed1 < maxSpeed){
+            document.getElementById("speedInput1").value++;
+        }
+    } else {
+        if(carSpeed2 < maxSpeed){
+            document.getElementById("speedInput2").value++;
+        }
+    }
+}
+
+function decreaseSpeed (carName){
+    if(carName === "car1") {
+        if(carSpeed1 > 0){
+            document.getElementById("speedInput1").value--;
+        }
+    } else {
+        if(carSpeed2 > 0){
+            document.getElementById("speedInput2").value--;
+        }
+    }
 }
 
 //###########################################
@@ -156,6 +190,8 @@ var Key = {
 
 window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
 window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
+
+
 
 
 
