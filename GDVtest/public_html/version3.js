@@ -44,17 +44,16 @@ function init() {
     scene.add(mesh);
 
     renderer = new THREE.CanvasRenderer();
-    //renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
-    document.addEventListener('mousedown', onDocumentMouseDown, false);
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-    document.addEventListener('mouseup', onDocumentMouseUp, false);
-    document.addEventListener('mousewheel', onDocumentMouseWheel, false);
-
-    document.addEventListener('touchstart', onDocumentTouchStart, false);
-    document.addEventListener('touchmove', onDocumentTouchMove, false);
+//    document.addEventListener('mousedown', onDocumentMouseDown, false);
+//    document.addEventListener('mousemove', onDocumentMouseMove, false);
+//    document.addEventListener('mouseup', onDocumentMouseUp, false);
+//    document.addEventListener('mousewheel', onDocumentMouseWheel, false);
+//
+//    document.addEventListener('touchstart', onDocumentTouchStart, false);
+//    document.addEventListener('touchmove', onDocumentTouchMove, false);
 
     //
 
@@ -89,73 +88,73 @@ function loadTexture(path) {
 
 }
 
-function onDocumentMouseDown(event) {
-
-    event.preventDefault();
-
-    isUserInteracting = true;
-
-    onPointerDownPointerX = event.clientX;
-    onPointerDownPointerY = event.clientY;
-
-    onPointerDownLon = lon;
-    onPointerDownLat = lat;
-
-}
-
-function onDocumentMouseMove(event) {
-
-    if (isUserInteracting === true) {
-
-        lon = (onPointerDownPointerX - event.clientX) * 0.1 + onPointerDownLon;
-        lat = (event.clientY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
-
-    }
-
-}
-
-function onDocumentMouseUp(event) {
-
-    isUserInteracting = false;
-
-}
-
-function onDocumentMouseWheel(event) {
-
-    camera.fov -= event.wheelDeltaY * 0.05;
-    camera.updateProjectionMatrix();
-
-}
-
-
-function onDocumentTouchStart(event) {
-
-    if (event.touches.length == 1) {
-
-        event.preventDefault();
-
-        onPointerDownPointerX = event.touches[ 0 ].pageX;
-        onPointerDownPointerY = event.touches[ 0 ].pageY;
-
-        onPointerDownLon = lon;
-        onPointerDownLat = lat;
-
-    }
-
-}
-
-function onDocumentTouchMove(event) {
-
-    if (event.touches.length == 1) {
-
-        event.preventDefault();
-
-        lon = (onPointerDownPointerX - event.touches[0].pageX) * 0.1 + onPointerDownLon;
-        lat = (event.touches[0].pageY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
-
-    }
-
-}
+//function onDocumentMouseDown(event) {
+//
+//    event.preventDefault();
+//
+//    isUserInteracting = true;
+//
+//    onPointerDownPointerX = event.clientX;
+//    onPointerDownPointerY = event.clientY;
+//
+//    onPointerDownLon = lon;
+//    onPointerDownLat = lat;
+//
+//}
+//
+//function onDocumentMouseMove(event) {
+//
+//    if (isUserInteracting === true) {
+//
+//        lon = (onPointerDownPointerX - event.clientX) * 0.1 + onPointerDownLon;
+//        lat = (event.clientY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
+//
+//    }
+//
+//}
+//
+//function onDocumentMouseUp(event) {
+//
+//    isUserInteracting = false;
+//
+//}
+//
+//function onDocumentMouseWheel(event) {
+//
+//    camera.fov -= event.wheelDeltaY * 0.05;
+//    camera.updateProjectionMatrix();
+//
+//}
+//
+//
+//function onDocumentTouchStart(event) {
+//
+//    if (event.touches.length == 1) {
+//
+//        event.preventDefault();
+//
+//        onPointerDownPointerX = event.touches[ 0 ].pageX;
+//        onPointerDownPointerY = event.touches[ 0 ].pageY;
+//
+//        onPointerDownLon = lon;
+//        onPointerDownLat = lat;
+//
+//    }
+//
+//}
+//
+//function onDocumentTouchMove(event) {
+//
+//    if (event.touches.length == 1) {
+//
+//        event.preventDefault();
+//
+//        lon = (onPointerDownPointerX - event.touches[0].pageX) * 0.1 + onPointerDownLon;
+//        lat = (event.touches[0].pageY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
+//
+//    }
+//
+//}
 
 function animate() {
 
@@ -176,12 +175,13 @@ function update() {
     phi = THREE.Math.degToRad(90 - lat);
     theta = THREE.Math.degToRad(lon);
 
-    target.x = 500 * Math.sin(phi) * Math.cos(theta);
-    target.y = 500 * Math.cos(phi);
-    target.z = 500 * Math.sin(phi) * Math.sin(theta);
+    target.x = 500; 
+    target.y = 250;
+    target.z = 500;
 
     camera.lookAt(target);
 
     renderer.render(scene, camera);
 
 }
+//renderer.render(scene, camera);
