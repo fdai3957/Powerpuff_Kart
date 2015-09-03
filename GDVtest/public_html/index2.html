@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Getting Started with Three.js</title>
+    </head>
+    <body>
+        <div id="test"><h1>GDV Test</h1></div>
+        
+        
+        
+        <script src="three.min.js"></script>
+       
+        <script>
+        window.onload = function() {
+            
+            var container = document.createElement( 'div' );
+            document.body.appendChild( container );
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            container.appendChild( renderer.domElement );
+
+            var scene = new THREE.Scene();
+
+            var camera = new THREE.PerspectiveCamera(
+                55,             // Field of view
+                window.innerWidth / window.innerHeight,      // Aspect ratio
+                0.5,            // Near plane
+                3000000           // Far plane
+            );
+            camera.position.set( 2000, 750, 2000 );
+            
+            
+            //orbitControls weggelassen //
+            
+            var light = new THREE.HemisphereLight ( 0xffffbb, 0x080820, 1);
+            light.position.set( - 1, 1, - 1 );
+            scene.add(light);
+            
+            
+            //load skybox
+            
+            var cubeMap = new THREE.CubeTexture( [] );
+            cubeMap.format = THREE.RGBFormat;
+            cubeMap.flipY = false;
+            
+            var loader = new THREE.ImageLoader();
+            loader.load( 'images/Cubemap_2.png', function( image ) {
+                
+                var getSide = function (x, y) {
+                    var size = 1024;
+                    
+                    var canvas = document.createElement( 'canvas' );
+                    canvas.width = size;
+                    canvas.height = size;
+                    
+                    var context = canvas.getContext( '2d' );
+                    context.drawImage ( image, - x * size, - y * size );
+                    
+                    return canvas;
+                };
+                
+                cubeMap.images[ 0 ] = getSide( 2, 1 ); //px
+                cubeMap.images[ 1 ] = getSide( 0, 1 ); //nx
+                cubeMap.images[ 2 ] = getSide( 1, 0 ); //py
+                cubeMap.images[ 3 ] = getSide( 1, 2 ); //ny
+                cubeMap.images[ 4 ] = getSide( 1, 1 ); //pz
+                cubeMap.images[ 5 ] = getSide( 3, 1 ); //nz
+                cubeMap.needsUpdate = true;
+            } );
+            
+            var cubeShader = THREE.ShaderLib['cube'];
+            cubeShader.uniforms['tCube'].value = cubeMap;
+            
+            var skyBoxMaterial = new THREE.ShaderMaterial( {
+                fragmentShader: cubeShader.fragmentShader,
+                vertexShader: cubeShader.vertexShader,
+                uniforms: cubeShader.uniforms,
+                depthWrite: false,
+                side: THREE.BackSide
+            });
+            
+            var skyBox = new THREE.Mesh(
+                    new THREE.BoxGeometry(1000000, 1000000, 1000000),
+                    skyBoxMaterial
+            );
+            scene.add( skyBox );
+            
+            
+            //var light = new THREE.PointLight( 0xFFFF00 );
+            //light.position.set( 10, 0, 10 );
+            //scene.add( light );
+
+            //renderer.setClearColor( 0xdddddd, 1);
+            renderer.render( scene, camera );
+
+        };
+        
+        </script>
+    </body>
+    </html>

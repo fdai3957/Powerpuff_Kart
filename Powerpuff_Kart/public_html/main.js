@@ -48,11 +48,12 @@ $(function(){
    
    cameraPivot.position.x = 0;
    cameraPivot.position.y = 40;
-   cameraPivot.position.z = 0;6
+   cameraPivot.position.z = 0;
    cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0);
    
    camera.lookAt(cube.position);
+   
    
    render();
    function render(){
