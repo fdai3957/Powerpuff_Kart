@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-    <html>
-    <head>
-        <title>Getting Started with Three.js</title>
-    </head>
-    <body>
-        <div id="test"><h1>GDV Test</h1></div>
-        
-        
-        
-        <script src="three.min.js"></script>
-       
-        <script>
-        window.onload = function() {
+window.onload = function() {
             
             var container = document.createElement( 'div' );
             document.body.appendChild( container );
@@ -96,6 +83,4 @@
 
         };
         
-        </script>
-    </body>
-    </html>
+

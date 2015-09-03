@@ -1,90 +1,23 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+    <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Getting Started with Three.js</title>
     </head>
     <body>
-         <script src="three.min.js"></script>
-       
-        <script>
-        window.onload = function() {
-         
-         camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
-
-				scene = new THREE.Scene();
-
-				var sides = [
-					{
-						url: 'images/skybox_px.jpg',
-						position: [ -512, 0, 0 ],
-						rotation: [ 0, Math.PI / 2, 0 ]
-					},
-					{
-						url: 'images/skybox_nx.jpg',
-						position: [ 512, 0, 0 ],
-						rotation: [ 0, -Math.PI / 2, 0 ]
-					},
-					{
-						url: 'images/skybox_py.jpg',
-						position: [ 0,  512, 0 ],
-						rotation: [ Math.PI / 2, 0, Math.PI ]
-					},
-					{
-						url: 'images/skybox_ny.jpg',
-						position: [ 0, -512, 0 ],
-						rotation: [ - Math.PI / 2, 0, Math.PI ]
-					},
-					{
-						url: 'images/skybox_pz.jpg',
-						position: [ 0, 0,  512 ],
-						rotation: [ 0, Math.PI, 0 ]
-					},
-					{
-						url: 'images/skybox_nz.jpg',
-						position: [ 0, 0, -512 ],
-						rotation: [ 0, 0, 0 ]
-					}
-				];
-
-				for ( var i = 0; i < sides.length; i ++ ) {
-
-					var side = sides[ i ];
-
-					var element = document.createElement( 'img' );
-					element.width = 1026; // 2 pixels extra to close the gap.
-					element.src = side.url;
-
-					var object = new THREE.CSS3DObject( element );
-					object.position.fromArray( side.position );
-					object.rotation.fromArray( side.rotation );
-					scene.add( object );
-
-				}
-
-				renderer = new THREE.CSS3DRenderer();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
-                                
-                                function onWindowResize() {
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}
-                        camera.lookAt( target );
-
-				renderer.render( scene, camera );
+        <div id="test"><h1>GDV Test</h1></div>
+        <div id="container"></div>
         
-        }
-        </script>
+        
+        
+        <script src="three.min.js"></script>
+        <!-- <script type="text/javascript" src="version1.js"></script>
+        
+       <!--<script type="text/javascript" src="version2.js"></script>
+       <script src="js/renderers/CSS3DRenderer.js"></script>-->
+       
+       <script src="js/renderers/Projector.js"></script>
+       <script src="js/renderers/CanvasRenderer.js"></script>
+       <script type="text/javascript" src="version3.js"></script>
+       
     </body>
-</html>
+    </html>
