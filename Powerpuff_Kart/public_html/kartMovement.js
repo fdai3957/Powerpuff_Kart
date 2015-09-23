@@ -1,35 +1,48 @@
-var keyframesArray = new Array();
+var keyframesArray1 = new Array();
+var keyframesArray2 = new Array();
 
 function fillKeyframesArray() {
-    keyframesArray[0] = [0,0,0,0];
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(4, 0, -9), 4, Math.PI, keyframesArray[keyframesArray.length-1][3], 4, true));
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(6, 0, -6), 7, Math.PI/2, keyframesArray[keyframesArray.length-1][3], 4, true));
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(9, 0, -4), 4, 0, keyframesArray[keyframesArray.length-1][3], 4, true));
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(-9, 0, 4), 4, Math.PI, keyframesArray[keyframesArray.length-1][3], 4, false));
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(-6, 0, 6), 7, 3*Math.PI/2, keyframesArray[keyframesArray.length-1][3], 4, false));
-    pushToKeyFramesArray(kurvenKeyFrames(new Array(-4, 0, 9), 4, 0, keyframesArray[keyframesArray.length-1][3], 4, false));
+    keyframesArray1[0] = [1,0,0,0];
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(6, 0, -6), 5, Math.PI, keyframesArray1[keyframesArray1.length-1][3], 4, true));
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(6, 0, -6), 5, Math.PI/2, keyframesArray1[keyframesArray1.length-1][3], 4, true));
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(6, 0, -6), 5, 0, keyframesArray1[keyframesArray1.length-1][3], 4, true));
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(-6, 0, 6), 7, Math.PI, keyframesArray1[keyframesArray1.length-1][3], 4, false));
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(-6, 0, 6), 7, 3*Math.PI/2, keyframesArray1[keyframesArray1.length-1][3], 4, false));
+    pushToKeyFramesArray1(kurvenKeyFrames(new Array(-6, 0, 6), 7, 0, keyframesArray1[keyframesArray1.length-1][3], 4, false));
+    keyframesArray2[0] = [-1,0,0,0];
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(6, 0, -6), 7, Math.PI, keyframesArray2[keyframesArray2.length-1][3], 4, true));
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(6, 0, -6), 7, Math.PI/2, keyframesArray2[keyframesArray2.length-1][3], 4, true));
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(6, 0, -6), 7, 0, keyframesArray2[keyframesArray2.length-1][3], 4, true));
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(-6, 0, 6), 5, Math.PI, keyframesArray2[keyframesArray2.length-1][3], 4, false));
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(-6, 0, 6), 5, 3*Math.PI/2, keyframesArray2[keyframesArray2.length-1][3], 4, false));
+    pushToKeyFramesArray2(kurvenKeyFrames(new Array(-6, 0, 6), 5, 0, keyframesArray2[keyframesArray2.length-1][3], 4, false));
 }
 
-function pushToKeyFramesArray(array){
+function pushToKeyFramesArray1(array){
     for(var i = 0; i < array.length; i++){
-        keyframesArray.push(array[i]);
+        keyframesArray1.push(array[i]);
+    }
+}
+function pushToKeyFramesArray2(array){
+    for(var i = 0; i < array.length; i++){
+        keyframesArray2.push(array[i]);
     }
 }
 
-var positionArray = new Array();
-var interpolationPointCount = 200;
+var positionArray1 = new Array();
+var positionArray2 = new Array();
+var interpolationPointCount = 300;
 
-function fillPositionArray() {
-    for(var i = 0; i < keyframesArray.length; i++){
+function fillPositionArray1() {
+    for(var i = 0; i < keyframesArray1.length; i++){
         var lastKeyframe = new Array();
         var nextKeyframe = new Array();
         
-        for(var k = 0; k < keyframesArray[i].length; k++){
-            lastKeyframe[k] = keyframesArray[i][k];
-            nextKeyframe[k] = keyframesArray[(i+1)%keyframesArray.length][k];
+        for(var k = 0; k < keyframesArray1[i].length; k++){
+            lastKeyframe[k] = keyframesArray1[i][k];
+            nextKeyframe[k] = keyframesArray1[(i+1)%keyframesArray1.length][k];
         }
-        
-        positionArray.push(lastKeyframe);
+        positionArray1.push(lastKeyframe);
         var inPC = interpolationPointCount*getKeyFrameSqrt(lastKeyframe, nextKeyframe);
         //console.log(inPC);
         for(var j = 1; j < inPC+1; j++){
@@ -38,7 +51,30 @@ function fillPositionArray() {
             var z = lastKeyframe[2] + getPositionValue(lastKeyframe[2],nextKeyframe[2], inPC, j);
             var rot = lastKeyframe[3] + getPositionValue(lastKeyframe[3], nextKeyframe[3], inPC, j);
             
-            positionArray.push([x,y,z, rot]);
+            positionArray1.push([x,y,z, rot]);
+        }
+    }
+}
+
+function fillPositionArray2() {
+    for(var i = 0; i < keyframesArray2.length; i++){
+        var lastKeyframe = new Array();
+        var nextKeyframe = new Array();
+        
+        for(var k = 0; k < keyframesArray2[i].length; k++){
+            lastKeyframe[k] = keyframesArray2[i][k];
+            nextKeyframe[k] = keyframesArray2[(i+1)%keyframesArray2.length][k];
+        }
+        positionArray2.push(lastKeyframe);
+        var inPC = interpolationPointCount*getKeyFrameSqrt(lastKeyframe, nextKeyframe);
+        //console.log(inPC);
+        for(var j = 1; j < inPC+1; j++){
+            var x = lastKeyframe[0] + getPositionValue(lastKeyframe[0],nextKeyframe[0], inPC, j);
+            var y = lastKeyframe[1] + getPositionValue(lastKeyframe[1],nextKeyframe[1], inPC, j);
+            var z = lastKeyframe[2] + getPositionValue(lastKeyframe[2],nextKeyframe[2], inPC, j);
+            var rot = lastKeyframe[3] + getPositionValue(lastKeyframe[3], nextKeyframe[3], inPC, j);
+            
+            positionArray2.push([x,y,z, rot]);
         }
     }
 }
@@ -88,32 +124,61 @@ function kurvenKeyFrames(mittelPunkt, radius, anfangsWinkel, anfangsRotation, an
     return keyArray;
 }
 
+fillKeyframesArray();
+fillPositionArray1();
+fillPositionArray2();
+
 
 //###########################################
 
 
 //current Index in positionArray
-var index = 0;
+var index1 = 0;
+var index2 = 0;
 
-var carSpeed = 0;
+var carSpeed1 = 0;
+var carSpeed2 = 0;
 
-function moveCar(car){
-    car.position.x = positionArray[index][0];
-    car.position.z = -positionArray[index][2];
-    car.rotation.y = positionArray[index][3];
+function moveCar(car, number){
+    switch(number){
+        case 1:
+            car.position.x = positionArray1[index1][0];
+            car.position.z = -positionArray1[index1][2];
+            car.rotation.y = positionArray1[index1][3];
+
+            if (Key.isDown(Key.UP)) {
+                index1 = (index1 + carSpeed1) % positionArray1.length;
+                if (carSpeed1 < interpolationPointCount / 5) {
+                    carSpeed1++;
+                }
+            }
+            else {
+                index1 = (index1 + carSpeed1) % positionArray1.length;
+                if (carSpeed1 > 0) {
+                    carSpeed1--;
+                }
+            }
+            break;
+        case 2:
+            car.position.x = positionArray2[index2][0];
+            car.position.z = -positionArray2[index2][2];
+            car.rotation.y = positionArray2[index2][3];
+
+            if (Key.isDown(Key.SPACE)) {
+                index2 = (index2 + carSpeed2) % positionArray2.length;
+                if (carSpeed2 < interpolationPointCount / 5) {
+                    carSpeed2++;
+                }
+            }
+            else {
+                index2 = (index2 + carSpeed2) % positionArray2.length;
+                if (carSpeed2 > 0) {
+                    carSpeed2--;
+                }
+            }
+            break;
+    }
     
-    if(Key.isDown(Key.UP) || Key.isDown(Key.SPACE)){
-        index = (index + carSpeed) % positionArray.length;
-        if(carSpeed < interpolationPointCount/5){
-            carSpeed++;
-        }
-    }
-    else {
-        index = (index + carSpeed) % positionArray.length;
-        if(carSpeed > 0){
-            carSpeed--;
-        }
-    }
     
     //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
     //console.log(car.position.x + ", " + car.position.z);
@@ -121,27 +186,26 @@ function moveCar(car){
 
 //###########################################
 
-fillKeyframesArray();
-fillPositionArray();
+
 
 function logPositionArray() {
-    for(var i = 0; i < positionArray.length; i++){
+    for(var i = 0; i < positionArray1.length; i++){
         var text = "i=" + i + "; ";
-        for(var j = 0; j < positionArray[i].length; j++){
-            text += positionArray[i][j] + ", ";
+        for(var j = 0; j < positionArray1[i].length; j++){
+            text += positionArray1[i][j] + ", ";
         }
-        console.log(text);
+        //console.log(text);
     }
 }
 //logPositionArray();
 
 function logKeyArray() {
-    for(var i = 0; i < keyframesArray.length; i++){
+    for(var i = 0; i < keyframesArray1.length; i++){
         var text = "i=" + i + "; ";
-        for(var j = 0; j < keyframesArray[i].length; j++){
-            text += keyframesArray[i][j] + ", ";
+        for(var j = 0; j < keyframesArray1[i].length; j++){
+            text += keyframesArray1[i][j] + ", ";
         }
-        console.log(text);
+        //console.log(text);
     }
 }
 logKeyArray();

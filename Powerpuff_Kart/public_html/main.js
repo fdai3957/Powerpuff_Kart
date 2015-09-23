@@ -7,26 +7,49 @@ $(function () {
 
     renderer.setClearColor(0xdddddd);
     renderer.setSize(windowWidth, windowHeight);
-    renderer.shadowMapEnabled = true;
+    renderer.shadowMap.enabled = true;
     renderer.shadowMapSoft = true;
+    
+    //Kartbahn
+    var manager = new THREE.LoadingManager();
+    manager.onProgress = function(item, loaded, total){
+        console.log(item, loaded, total);
+    };
 
-    //var axis = new THREE.AxisHelper(10);
-    //scene.add(axis);
+    var kartbahn = null;
+    var loader = new THREE.JSONLoader(manager);
+    loader.load('models/KartbahnFertig1.json', function(geometry){
+        var material = new THREE.MeshLambertMaterial({color: 0x3d3d3d});
+        kartbahn = new THREE.Mesh(geometry, material);
+    
+        kartbahn.position.y += 0.1;
+        kartbahn.scale.x *= 1.9;
+        kartbahn.scale.z *= 1.9;
+        
+        scene.add(kartbahn);
+    });
 
-    //var grid = new THREE.GridHelper(20, 1);
-    //var color = new THREE.Color("rgb(255,0,0)");
-    //grid.setColors(color, 0x000000);
-    //scene.add(grid);
+    //Car 1
+    var car1Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
+    var car1Material = new THREE.MeshLambertMaterial({color: 0xff3300});
+    var car1 = new THREE.Mesh(car1Geometry, car1Material);
 
-    var cubeGeometry = new THREE.BoxGeometry(1, 0.5, 2);
-    var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xff3300});
-    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    car1.position.y = 0.25;
+    car1.castShadow = true;
 
-    cube.position.y = 0.25;
-    cube.castShadow = true;
+    scene.add(car1);
+    
+    //Car 2
+    var car2Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
+    var car2Material = new THREE.MeshLambertMaterial({color: 0x0033ff});
+    var car2 = new THREE.Mesh(car2Geometry, car2Material);
 
-    scene.add(cube);
+    car2.position.y = 0.25;
+    car2.castShadow = true;
 
+    scene.add(car2);
+
+    //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
     var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -36,12 +59,16 @@ $(function () {
 
     scene.add(plane);
 
+
+    //Light
     var spotLight = new THREE.SpotLight(0xffffff);
     spotLight.castShadow = true;
     spotLight.position.set(30, 30, 50);
 
     scene.add(spotLight);
 
+
+    //Camera Position
     cameraPivot = new THREE.Object3D();
     cameraPivot.add(camera);
     scene.add(cameraPivot);
@@ -52,8 +79,9 @@ $(function () {
     cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
     cameraPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/4);
 
-    camera.lookAt(cube.position);
-
+    camera.lookAt(car1.position);
+    
+    //Skybox
     texture_placeholder = document.createElement('canvas');
     texture_placeholder.width = 128;
     texture_placeholder.height = 128;
@@ -75,12 +103,12 @@ $(function () {
     skyboxMesh.scale.x = -1;
     scene.add(skyboxMesh);
 
+
+    //Render Function
     render();
     function render() {
-        //cube.rotation.x += 0.1;
-        //cube.rotation.y += 0.1;
-        //cube.rotation.z += 0.1;
-        moveCar(cube);
+        moveCar(car1,1);
+        moveCar(car2,2);
 
         requestAnimationFrame(render);
         renderer.render(scene, camera);
