@@ -107,6 +107,7 @@ $(function () {
 
     scene.add(spotLight);
 
+    scene.add(makeSpectator());
 
     //Camera Position
     cameraPivot = new THREE.Object3D();
@@ -173,4 +174,59 @@ function loadTexture(path) {
     image.src = path;
 
     return material;
+}
+
+function makeSpectator(){
+   
+    var zuschauerGeometry = new THREE.BoxGeometry(2.5, 5, 2.5);
+    var zuschauerMaterial= new THREE.MeshLambertMaterial({color: 0x2E64FE});
+    var zuschauer = new THREE.Mesh(zuschauerGeometry, zuschauerMaterial);    
+
+    zuschauer.position.z = 0;
+    zuschauer.position.x = 0;
+    zuschauer.position.y = 2.5;
+    
+    var halsGeometry = new THREE.BoxGeometry(1 ,0.5, 1);
+    var halsMaterial = new THREE.MeshLambertMaterial({color: 0xFFE5B2});
+    var hals = new THREE.Mesh(halsGeometry, halsMaterial);
+    
+    hals.position.y = 5;
+    
+    
+    var kopfGeometry = new THREE.BoxGeometry(2 ,2, 2);
+    var kopfMaterial = new THREE.MeshLambertMaterial({color: 0xFFE5B2});
+    var kopf = new THREE.Mesh(kopfGeometry, kopfMaterial);
+    
+    kopf.position.y = 6.25;
+    
+    
+    var armGeometry = new THREE.BoxGeometry(2.5, 4, 0.5);
+    var armMaterial = new THREE.MeshLambertMaterial({color:0xFFE5B2});
+    var arm = new THREE.Mesh(armGeometry, armMaterial);
+    
+    arm.position.z = 1.5;
+    arm.position.x = -1;
+    arm.position.y = 5;
+    
+    
+    var armlGeometry = new THREE.BoxGeometry(2.5, 4, 0.5);
+    var armlMaterial = new THREE.MeshLambertMaterial({color:0xFFE5B2});
+    var arml = new THREE.Mesh(armlGeometry, armlMaterial);
+    
+    arml.position.z = -1.5;
+    arml.position.x = 1;
+    arml.position.y = 5;
+    
+      
+    zuschauerObj = new THREE.Object3D();
+    zuschauerObj.add(zuschauer);
+    zuschauerObj.add(kopf);
+    zuschauerObj.add(hals);
+    zuschauerObj.add(arm);
+    zuschauerObj.add(arml);
+//    zuschauerObj.scale.x *= 0.1;
+//    zuschauerObj.scale.y *= 0.1;
+//    zuschauerObj.scale.z *= 0.1;
+    
+    return zuschauerObj;
 }
