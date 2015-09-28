@@ -153,6 +153,8 @@ var carSpeed2 = 0;
 var mayDrive1 = true;
 var mayDrive2 = true;
 
+var playZielAudio = true;
+
 function moveCar(car, number) {
     switch (number) {
         case 1:
@@ -223,6 +225,10 @@ function moveCar(car, number) {
             timeDiv2.innerHTML = "Spieler Grün hatte eine Zeit von " + zeit/1000 + " sec";
             console.log("Spieler 2 hatte eine Zeit von " + zeit/1000 + " sec");
         }
+        if(playZielAudio){
+            playZielAudio = false;
+            document.getElementById("zielAudio").play();
+        }
     }
     //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
     //console.log(car.position.x + ", " + car.position.z);
@@ -276,6 +282,9 @@ window.addEventListener('keyup', function (event) {
 window.addEventListener('keydown', function (event) {
     Key.onKeydown(event);
 }, false);
+
+
+//AUDIO
 
 
 
