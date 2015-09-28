@@ -144,9 +144,7 @@ $(function () {
     scene.add(skyboxMesh);
     
     
-    //Zeitmessung
-    var startDate = new Date();
-    startzeit = startDate.getTime();
+   
 
 
     //Render Function
@@ -154,7 +152,7 @@ $(function () {
     function render() {
         moveCar(car1,1);
         moveCar(car2,2);
-
+        
         requestAnimationFrame(render);
         renderer.render(scene, camera);
     }
