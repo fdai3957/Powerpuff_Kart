@@ -10,15 +10,21 @@ $(function () {
     renderer.shadowMap.enabled = true;
     renderer.shadowMapSoft = true;
     
+    var cameraVictim = new THREE.Mesh();
+    cameraVictim.position.x = 0;
+    cameraVictim.position.y = 0.25;
+    cameraVictim.position.z = 0;
+    scene.add(cameraVictim);
+    
     //Kartbahn
-    var manager = new THREE.LoadingManager();
-    manager.onProgress = function(item, loaded, total){
+    var kartbahnManager = new THREE.LoadingManager();
+    kartbahnManager.onProgress = function(item, loaded, total){
         console.log(item, loaded, total);
     };
 
     var kartbahn = null;
-    var loader = new THREE.JSONLoader(manager);
-    loader.load('models/KartbahnFertig1.json', function(geometry){
+    var kartbahnLoader = new THREE.JSONLoader(kartbahnManager);
+    kartbahnLoader.load('models/KartbahnFertig1.json', function(geometry){
         var material = new THREE.MeshLambertMaterial({color: 0x3d3d3d});
         kartbahn = new THREE.Mesh(geometry, material);
     
@@ -30,24 +36,58 @@ $(function () {
     });
 
     //Car 1
+    var car1Manager = new THREE.LoadingManager();
+    car1Manager.onProgress = function(item, loaded, total){
+        console.log(item, loaded, total);
+    };
+    
     var car1Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
     var car1Material = new THREE.MeshLambertMaterial({color: 0xff3300});
     var car1 = new THREE.Mesh(car1Geometry, car1Material);
+    
+//    var car1 = null;
+    var car1Loader = new THREE.JSONLoader(car1Manager);
+    car1Loader.load('models/AutoRot.json', function(geometry){
+        var material = new THREE.MeshLambertMaterial({color: 0xff3300});
+        car1 = new THREE.Mesh(geometry, material);
+        
+        car1.scale.x *= 0.2;
+        car1.scale.z *= 0.2;
+        car1.scale.y *= 0.2;
+        car1.castShadow = true;
 
-    car1.position.y = 0.25;
-    car1.castShadow = true;
+        scene.add(car1);
+    });
+    
+    
+    
 
-    scene.add(car1);
+    
     
     //Car 2
+    var car2Manager = new THREE.LoadingManager();
+    car2Manager.onProgress = function (item, loaded, total) {
+        console.log(item, loaded, total);
+    };
+
     var car2Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
-    var car2Material = new THREE.MeshLambertMaterial({color: 0x0033ff});
+    var car2Material = new THREE.MeshLambertMaterial({color: 0x228B22});
     var car2 = new THREE.Mesh(car2Geometry, car2Material);
 
-    car2.position.y = 0.25;
-    car2.castShadow = true;
+//    var car2 = null;
+    var car2Loader = new THREE.JSONLoader(car2Manager);
+    car2Loader.load('models/AutoGruen.json', function (geometry) {
+        var material = new THREE.MeshLambertMaterial({color: 0x228B22});
+        car2 = new THREE.Mesh(geometry, material);
 
-    scene.add(car2);
+        car2.scale.x *= 0.2;
+        car2.scale.z *= 0.2;
+        car2.scale.y *= 0.2;
+        car2.castShadow = true;
+
+        scene.add(car2);
+    });
+    
 
     //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
@@ -79,7 +119,7 @@ $(function () {
     cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
     cameraPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI/4);
 
-    camera.lookAt(car1.position);
+   camera.lookAt(cameraVictim.position);
     
     //Skybox
     texture_placeholder = document.createElement('canvas');
@@ -102,6 +142,11 @@ $(function () {
     var skyboxMesh = new THREE.Mesh(new THREE.BoxGeometry(300, 300, 300, 7, 7, 7), new THREE.MeshFaceMaterial(skyboxMaterials));
     skyboxMesh.scale.x = -1;
     scene.add(skyboxMesh);
+    
+    
+    //Zeitmessung
+    var startDate = new Date();
+    startzeit = startDate.getTime();
 
 
     //Render Function
