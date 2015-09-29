@@ -60,10 +60,6 @@ $(function () {
     });
 
 
-
-
-
-
     //Car 2
     var car2Manager = new THREE.LoadingManager();
     car2Manager.onProgress = function (item, loaded, total) {
@@ -88,6 +84,27 @@ $(function () {
         scene.add(car2);
     });
 
+    //SteinDunkel
+    var steinManager = new THREE.LoadingManager();
+    steinManager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var steinDunkel = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(steinManager);
+    loader.load('models/SteinDunkel.json', function(geometry) {
+        var material = new THREE.MeshLambertMaterial({color: 0x363636});
+        steinDunkel = new THREE.Mesh(geometry, material);
+        
+        steinDunkel.position.x += 10;
+        steinDunkel.position.z -=3;
+        
+        steinDunkel.scale.x *= 0.5;
+        steinDunkel.scale.y *= 0.5;
+        steinDunkel.scale.z *= 0.5;
+        
+        scene.add(steinDunkel);
+    });
 
     //Ground
 //    var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
