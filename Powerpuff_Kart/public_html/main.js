@@ -127,6 +127,9 @@ $(function () {
         }
     };
 
+    zuschauerOrientation = [];
+    zuschauerArray = [];
+    multiplySpectator(scene);
 
     //Light
     var spotLight = new THREE.SpotLight(0xffffff);
@@ -135,7 +138,7 @@ $(function () {
 
     scene.add(spotLight);
 
-    scene.add(makeSpectator());
+    
 
     //Camera Position
     cameraPivot = new THREE.Object3D();
@@ -210,7 +213,7 @@ function loadTexture(path) {
 
     return material;
 }
-
+// Zuschauer erstellen
 function makeSpectator() {
 
     var zuschauerGeometry = new THREE.BoxGeometry(2.5, 5, 2.5);
@@ -264,6 +267,34 @@ function makeSpectator() {
     zuschauerObj.scale.z *= 0.1;
 
     return zuschauerObj;
+}
+
+//Zuschauer vermehren 
+function multiplySpectator(scene){
+    
+    for(var i=0; i<=40; i++){
+        
+        var zuschauer = makeSpectator();
+        
+        zuschauer.position.y = getRandomY();
+        
+        scene.add(zuschauer);
+        
+        zuschauerArray.push(zuschauer);
+        
+        var rnd = Math.random();
+        if(rnd <= 0.5){
+            zuschauerOrientation.push(true);
+        }
+        else{
+            zuschauerOrientation.push(false);
+        }
+    }
+}
+
+
+function getRandomY(){
+    return THREE.Math.randFloat(0, 1);
 }
 
 //Cube particles
