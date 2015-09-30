@@ -35,6 +35,27 @@ $(function () {
         scene.add(kartbahn);
     });
 
+    //Start/Ziel Objekt
+    var startZielManager = new THREE.LoadingManager();
+    startZielManager.onProgress = function(item, loaded, total){
+        console.log(item, loaded, total);
+    };
+    
+    var startZiel = null;
+    var startZielLoader = new THREE.JSONLoader(startZielManager);
+    startZielLoader.load('models/startziel4.json',function(geometry, mapNormal){
+        var material = new THREE.MeshLambertMaterial( mapNormal);
+        startZiel = new THREE.Mesh(geometry, material); 
+             
+        
+        
+        startZiel.position.y +=0.1;
+        startZiel.scale.x *= 10;
+        startZiel.scale.y *= 10;
+        startZiel.scale.z *= 10;
+        startZiel.rotation.y = 5;
+        scene.add(startZiel);
+    });
 
     //Car 1
     var car1Manager = new THREE.LoadingManager();
