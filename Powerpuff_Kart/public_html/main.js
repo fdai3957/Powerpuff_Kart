@@ -282,6 +282,7 @@ function makeSpectator() {
     zuschauerObj.scale.x *= 0.1;
     zuschauerObj.scale.y *= 0.1;
     zuschauerObj.scale.z *= 0.1;
+    
 
     return zuschauerObj;
 }
@@ -312,6 +313,30 @@ function multiplySpectator(scene){
 
 function getRandomY(){
     return THREE.Math.randFloat(0, 1);
+}
+
+//Zuschauer Bewegung
+function movementSpectator(){
+    var jumpSpeed = 0.1;
+    
+    for( var i=0; i < zuschauerArray.length; i++){
+        
+        //true = up, false = down
+        if(zuschauerOrientation[i]){
+            zuschauerArray[i].position.y += jumpSpeed;
+            if(zuschauerArray[i].position.y >= 1){
+                zuschauerOrientation[i] = false;
+            }
+        }
+        else{
+            zuschauerArray[i].position.y -= jumpSpeed;
+            if(zuschauerArray[i].position.y <= 0){
+                zuschauerOrientation[i] = true;
+            }
+        }
+        
+        
+    }
 }
 
 //Cube particles
