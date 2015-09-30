@@ -35,6 +35,7 @@ $(function () {
         scene.add(kartbahn);
     });
 
+
     //Car 1
     var car1Manager = new THREE.LoadingManager();
     car1Manager.onProgress = function (item, loaded, total) {
@@ -202,13 +203,16 @@ $(function () {
         moveCar(car1, 1);
         moveCar(car2, 2);
         
+        movementSpectator();
+        
         if (cubeObjectArray.length < 200) {
             scene.add(SpawnCubes());
             scene.add(SpawnCubes());
         }
         
         cubeObjectArray.forEach(cubeObjectCallback);
-
+        
+        
         requestAnimationFrame(render);
         renderer.render(scene, camera);
     }
@@ -282,7 +286,7 @@ function makeSpectator() {
     zuschauerObj.scale.x *= 0.1;
     zuschauerObj.scale.y *= 0.1;
     zuschauerObj.scale.z *= 0.1;
-    
+    zuschauerObj.position.x = 10;
 
     return zuschauerObj;
 }
