@@ -101,29 +101,7 @@ $(function () {
 
         scene.add(car2);
     });
-
-    //SteinDunkel
-    var steinManager = new THREE.LoadingManager();
-    steinManager.onProgress = function (item, loaded, total) {
-            console.log(item, loaded, total);
-    };
-    
-    var steinDunkel = new THREE.Mesh();
-    var loader = new THREE.JSONLoader(steinManager);
-    loader.load('models/SteinDunkel.json', function(geometry) {
-        var material = new THREE.MeshLambertMaterial({color: 0x363636});
-        steinDunkel = new THREE.Mesh(geometry, material);
-        
-        steinDunkel.position.x += 10;
-        steinDunkel.position.z -=3;
-        
-        steinDunkel.scale.x *= 0.5;
-        steinDunkel.scale.y *= 0.5;
-        steinDunkel.scale.z *= 0.5;
-        
-        scene.add(steinDunkel);
-    });
-    
+ 
     //Baum1
     var baum1Manager = new THREE.LoadingManager();
     baum1Manager.onProgress = function (item, loaded, total) {
@@ -194,6 +172,28 @@ $(function () {
         scene.add(baum3);
     });
     
+    //SteinDunkel
+    var steinManager = new THREE.LoadingManager();
+    steinManager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var steinDunkel = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(steinManager);
+    loader.load('models/SteinDunkel.json', function(geometry) {
+        var material = new THREE.MeshLambertMaterial({color: 0x363636});
+        steinDunkel = new THREE.Mesh(geometry, material);
+        
+        steinDunkel.position.x -= 5;
+        steinDunkel.position.z -= 8;
+        steinDunkel.position.y +=0;
+        
+        steinDunkel.scale.x *= 0.3;
+        steinDunkel.scale.y *= 0.3;
+        steinDunkel.scale.z *= 0.3;
+        
+        scene.add(steinDunkel);
+    });
     
     //SteinHell
     var steinHellManager = new THREE.LoadingManager();
@@ -206,13 +206,13 @@ $(function () {
     loader.load('models/SteinHell.json', function(geometry, materials) {
         steinHell = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         
-          steinHell.position.x +=11;
-          steinHell.position.z +=0;
+          steinHell.position.x +=3;
+          steinHell.position.z -=5;
           steinHell.position.y +=0;
 
-          steinHell.scale.x *= 0.8;
-          steinHell.scale.y *= 0.8;
-          steinHell.scale.z *= 0.8;
+          steinHell.scale.x *= 0.3;
+          steinHell.scale.y *= 0.3;
+          steinHell.scale.z *= 0.3;
         
         scene.add(steinHell);
     });
@@ -229,13 +229,13 @@ $(function () {
     loader.load('models/SteinMittel.json', function(geometry, materials) {
         steinMittel = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         
-          steinMittel.position.x +=12;
+          steinMittel.position.x -=12;
           steinMittel.position.z +=0;
           steinMittel.position.y +=0;
 
-          steinMittel.scale.x *= 0.8;
-          steinMittel.scale.y *= 0.8;
-          steinMittel.scale.z *= 0.8;
+          steinMittel.scale.x *= 0.3;
+          steinMittel.scale.y *= 0.3;
+          steinMittel.scale.z *= 0.3;
         
         scene.add(steinMittel);
     });
