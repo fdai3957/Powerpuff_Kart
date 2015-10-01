@@ -1,4 +1,6 @@
 $(function () {
+    $('#autoAudio1')[0].volume = 0;
+    $('#autoAudio2')[0].volume = 0;
     var windowHeight = 600, windowWidth = 600;
 
     var scene = new THREE.Scene();
@@ -257,6 +259,8 @@ $(function () {
             updateCountdownText();
         }
         
+        controlAutoAudio();
+        
         cubeObjectArray.forEach(cubeObjectCallback);
         
         
@@ -443,4 +447,6 @@ function OnStartButtonClick(){
     displayCountdown = true;
     $('#countdownText').css("display","inline");
     $('#countdownAudio')[0].play();
+    $('#autoAudio1')[0].play();
+    $('#autoAudio2')[0].play();
 }

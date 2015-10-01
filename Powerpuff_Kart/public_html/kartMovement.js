@@ -155,6 +155,8 @@ var mayDrive2 = false;
 
 var playZielAudio = true;
 
+carMaxSpeed = interpolationPointCount / 5;
+
 function moveCar(car, number) {
     switch (number) {
         case 1:
@@ -166,7 +168,7 @@ function moveCar(car, number) {
 
             if (Key.isDown(Key.UP) && mayDrive1) {
                 index1 = (index1 + carSpeed1) % positionArray1.length;
-                if (carSpeed1 < interpolationPointCount / 5) {
+                if (carSpeed1 < carMaxSpeed) {
                     carSpeed1++;
                 }
             }
@@ -190,7 +192,7 @@ function moveCar(car, number) {
 
             if (Key.isDown(Key.SPACE) && mayDrive2) {
                 index2 = (index2 + carSpeed2) % positionArray2.length;
-                if (carSpeed2 < interpolationPointCount / 5) {
+                if (carSpeed2 < carMaxSpeed) {
                     carSpeed2++;
                 }
             }
@@ -289,6 +291,27 @@ window.addEventListener('keydown', function (event) {
 function OnCountdownEnded(){
     mayDrive1 = true;
     mayDrive2 = true;
+}
+
+var audio1playing = true;
+var audio2playing = true;
+function controlAutoAudio(){
+    if(carSpeed1/carMaxSpeed > 0 && !audio1playing){
+       $('#autoAudio1')[0].play();
+    }
+    if(carSpeed2/carMaxSpeed > 0 && !audio2playing){
+       $('#autoAudio2')[0].play();
+    }
+    $('#autoAudio1')[0].volume = carSpeed1/carMaxSpeed;
+    $('#autoAudio2')[0].volume = carSpeed2/carMaxSpeed;
+    if(carSpeed1 === 0){
+       $('#autoAudio1')[0].pause();
+       audio1playing = false;
+    }
+    if(carSpeed2 === 0){
+       $('#autoAudio2')[0].pause(); 
+       audio2playing = false;
+    }
 }
 
 
