@@ -122,6 +122,28 @@ $(function () {
         
         scene.add(steinDunkel);
     });
+    
+    //Baum1
+    var baum1Manager = new THREE.LoadingManager();
+    baum1Manager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var baum1 = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(baum1Manager);
+    loader.load('models/Baum1.json', function(geometry, materials) {
+        baum1 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+//          baum1.position.x -= 10;
+          baum1.position.z -= 10;
+          baum1.position.y += 10;
+        
+          baum1.scale.x *= 0.8;
+          baum1.scale.y *= 0.8;
+          baum1.scale.z *= 0.8;
+        
+        scene.add(baum1);
+    });
 
     //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
