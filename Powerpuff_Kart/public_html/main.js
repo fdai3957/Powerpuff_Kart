@@ -70,7 +70,7 @@ $(function () {
 
     var car1 = new THREE.Mesh();
     var car1Loader = new THREE.JSONLoader(car1Manager);
-    car1Loader.load('models/AutoRot_v02.json', function (geometry, materials) {
+    car1Loader.load('models/AutoRot_v03.json', function (geometry, materials) {
         car1 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 
         car1.scale.x *= 0.2;
@@ -90,7 +90,7 @@ $(function () {
 
     var car2 = new THREE.Mesh();
     var car2Loader = new THREE.JSONLoader(car2Manager);
-    car2Loader.load('models/AutoGruen_v02.json', function (geometry, materials) {
+    car2Loader.load('models/AutoGruen_v03.json', function (geometry, materials) {
         car2 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 
         car2.scale.x *= 0.2;
