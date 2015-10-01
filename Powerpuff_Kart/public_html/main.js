@@ -175,14 +175,25 @@ $(function () {
         scene.add(tonne2);
     });
 
-    var cubeObjectCallback = function (element, index, array) {
+    var cubeObjectCallbackLeft = function (element, index, array) {
         if (element.cube.position.y < element.endY) {
             element.cube.position.y += 0.05;
         }
         else {
             scene.remove(element.cube);
 
-            cubeObjectArray.splice(index, 1);
+            cubeObjectArrayLeft.splice(index, 1);
+        }
+    };
+    
+    var cubeObjectCallbackRight = function (element, index, array) {
+        if (element.cube.position.y < element.endY) {
+            element.cube.position.y += 0.05;
+        }
+        else {
+            scene.remove(element.cube);
+
+            cubeObjectArrayRight.splice(index, 1);
         }
     };
 
@@ -270,17 +281,24 @@ $(function () {
         
         movementSpectator();
         
-        if (cubeObjectArray.length < 200) {
-            scene.add(SpawnCubes());
-            scene.add(SpawnCubes());
+        if (cubeObjectArrayLeft.length < 200 && spawnCubes) {
+            scene.add(SpawnCubesLeft());
+            scene.add(SpawnCubesLeft());
         }
+        
+        if (cubeObjectArrayRight.length < 200 && spawnCubes) {
+            scene.add(SpawnCubesRight());
+            scene.add(SpawnCubesRight());
+        }
+        
         if(displayCountdown){
             updateCountdownText();
         }
         
         controlAutoAudio();
         
-        cubeObjectArray.forEach(cubeObjectCallback);
+        cubeObjectArrayLeft.forEach(cubeObjectCallbackLeft);
+        cubeObjectArrayRight.forEach(cubeObjectCallbackRight);
         
         
         requestAnimationFrame(render);
@@ -418,9 +436,13 @@ function movementSpectator(){
 //Cube particles
 var colorArray = new Array({color: 0xf2ff00}, {color: 0xff7200}, {color: 0xFF0000}, {color: 0x64FE2E}, {color: 0x0040FF});
 var colorArrayIndex = 0;
-var cubeIndex = 0;
+var cubeLeftIndex = 0;
+var cubeRightIndex = 0;
 
-var cubeObjectArray = new Array();
+var cubeObjectArrayLeft = new Array();
+var cubeObjectArrayRight = new Array();
+
+spawnCubes = false;
 
 function CreateCube(cubeColor) {
     size = getRandomArbitrary(0.05, 0.15);
@@ -429,15 +451,33 @@ function CreateCube(cubeColor) {
     return new THREE.Mesh(cubeGeometry, cubeMaterial);
 }
 
-function SpawnCubes() {
+function SpawnCubesLeft() {
     var cube = CreateCube(colorArray[colorArrayIndex]);
 
-    cube.position.y = 3.1;
-    cube.position.x = getRandomPosition();
-    cube.position.z = getRandomPosition();
-    cube.name = "cube" + (cubeIndex++);
+    cube.position.y = 1.3;
+    cube.position.x = 3.5 + getRandomPosition();
+    cube.position.z = 3 + getRandomPosition();
+    cube.name = "cube" + (cubeLeftIndex++);
 
-    cubeObjectArray.push({
+    cubeObjectArrayLeft.push({
+        cube: cube,
+        endY: ((colorArrayIndex + 1) / 4) + cube.position.y
+    });
+
+    colorArrayIndex = (colorArrayIndex + 1) % 5;
+
+    return cube;
+}
+
+function SpawnCubesRight() {
+    var cube = CreateCube(colorArray[colorArrayIndex]);
+
+    cube.position.y = 1.3;
+    cube.position.x = -3.5 + getRandomPosition();
+    cube.position.z = 3 + getRandomPosition();
+    cube.name = "cube" + (cubeRightIndex++);
+
+    cubeObjectArrayRight.push({
         cube: cube,
         endY: ((colorArrayIndex + 1) / 4) + cube.position.y
     });
@@ -455,7 +495,7 @@ function getRandomPosition() {
     else {
         vorzeichen = -1;
     }
-    return getRandomArbitrary(0, 0.5) * vorzeichen;
+    return getRandomArbitrary(0, 0.35) * vorzeichen;
 }
 
 // Returns a random number between min (inclusive) and max (exclusive)

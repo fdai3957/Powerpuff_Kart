@@ -230,6 +230,7 @@ function moveCar(car, number) {
         if(playZielAudio){
             playZielAudio = false;
             document.getElementById("zielAudio").play();
+            spawnCubes = true;
         }
     }
     //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
