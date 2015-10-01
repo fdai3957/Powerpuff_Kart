@@ -355,9 +355,9 @@ $(function () {
     setSpectatorPosition();
 
     //Light
-    var spotLight = new THREE.SpotLight(0xffffff);
+    var spotLight = new THREE.SpotLight(0xffffff, 2);
     spotLight.castShadow = true;
-    spotLight.position.set(10, 50, 10);
+    spotLight.position.set(-1.7,40, -30);
 
     scene.add(spotLight);
 
