@@ -1,7 +1,7 @@
 $(function () {
     $('#autoAudio1')[0].volume = 0;
     $('#autoAudio2')[0].volume = 0;
-    var windowHeight = 600, windowWidth = 600;
+    var windowHeight = 500, windowWidth = 800;
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(45, windowWidth / windowHeight, 0.1, 500);
@@ -133,14 +133,14 @@ $(function () {
     });
 
     //Ground
-//    var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
-//    var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-//    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-//
-//    plane.rotation.x = -0.5 * Math.PI;
-//    plane.receiveShadow = true;
-//
-//    scene.add(plane);
+    var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
+    var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+    plane.rotation.x = -0.5 * Math.PI;
+    plane.receiveShadow = true;
+
+    scene.add(plane);
 
     var tonneManager = new THREE.LoadingManager();
     tonneManager.onProgress = function(item, loaded, total){
@@ -188,11 +188,12 @@ $(function () {
     cameraPivot.add(camera);
     scene.add(cameraPivot);
 
-    cameraPivot.position.x = -30;
-    cameraPivot.position.y = 30;
-    cameraPivot.position.z = 0;
-    cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI);
-    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), -Math.PI / 4);
+    cameraPivot.position.x = -1.7;
+    cameraPivot.position.y = 15;
+    cameraPivot.position.z = -30;
+    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI/2.05);
+    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/1.6);
+    cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI/40);
 
     camera.lookAt(cameraVictim.position);
 
