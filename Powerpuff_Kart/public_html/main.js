@@ -59,7 +59,7 @@ $(function () {
         startZiel.scale.x *= 0.3;
         startZiel.scale.y *= 0.3;
         startZiel.scale.z *= 0.3;
-        startZiel.rotation.y = -0.5 * Math.PI;;
+        startZiel.rotation.y = -0.5 * Math.PI;
         scene.add(startZiel);
     });
 
@@ -135,16 +135,111 @@ $(function () {
     loader.load('models/Baum1.json', function(geometry, materials) {
         baum1 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
         
-//          baum1.position.x -= 10;
-          baum1.position.z -= 10;
-          baum1.position.y += 10;
-        
+          baum1.position.x +=8;
+          baum1.position.z +=0;
+          baum1.position.y +=0;
+//          baum1.rotation.z = Math.PI;
+          //baum1.rotation.y = Math.PI/2;
+//          baum1.rotation.x = Math.PI;
           baum1.scale.x *= 0.8;
           baum1.scale.y *= 0.8;
           baum1.scale.z *= 0.8;
         
         scene.add(baum1);
     });
+    
+    
+    //Baum2
+    var baum2Manager = new THREE.LoadingManager();
+    baum2Manager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var baum2 = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(baum2Manager);
+    loader.load('models/Baum2.json', function(geometry, materials) {
+        baum2 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+//          baum2.position.x +=8;
+//          baum2.position.z +=0;
+//          baum2.position.y +=0;
+//          
+          baum2.scale.x *= 0.8;
+          baum2.scale.y *= 0.8;
+          baum2.scale.z *= 0.8;
+        
+        scene.add(baum2);
+    });
+    
+    
+    //Baum3
+    var baum3Manager = new THREE.LoadingManager();
+    baum3Manager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var baum3 = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(baum3Manager);
+    loader.load('models/Baum3.json', function(geometry, materials) {
+        baum3 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+          baum3.position.x +=10;
+          baum3.position.z +=0;
+          baum3.position.y +=0;
+
+          baum3.scale.x *= 0.8;
+          baum3.scale.y *= 0.8;
+          baum3.scale.z *= 0.8;
+        
+        scene.add(baum3);
+    });
+    
+    
+    //SteinHell
+    var steinHellManager = new THREE.LoadingManager();
+    steinHellManager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var steinHell = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(steinHellManager);
+    loader.load('models/SteinHell.json', function(geometry, materials) {
+        steinHell = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+          steinHell.position.x +=11;
+          steinHell.position.z +=0;
+          steinHell.position.y +=0;
+
+          steinHell.scale.x *= 0.8;
+          steinHell.scale.y *= 0.8;
+          steinHell.scale.z *= 0.8;
+        
+        scene.add(steinHell);
+    });
+    
+    
+    //SteinMittel
+    var steinMittelManager = new THREE.LoadingManager();
+    steinMittelManager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var steinMittel = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(steinHellManager);
+    loader.load('models/SteinMittel.json', function(geometry, materials) {
+        steinMittel = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+          steinMittel.position.x +=12;
+          steinMittel.position.z +=0;
+          steinMittel.position.y +=0;
+
+          steinMittel.scale.x *= 0.8;
+          steinMittel.scale.y *= 0.8;
+          steinMittel.scale.z *= 0.8;
+        
+        scene.add(steinMittel);
+    });
+    
 
     //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
