@@ -426,6 +426,8 @@ $(function () {
 
     resetButtonDisplayed = false;
 
+    SpawnFences(scene);
+    
     //Render Function
     render();
     function render() {
@@ -692,3 +694,65 @@ function OnStartButtonClick(){
     $('#autoAudio1')[0].play();
     $('#autoAudio2')[0].play();
 }
+
+function makeFence(){
+    
+    var balkenGeometry = new THREE.BoxGeometry(0.5, 1, 7);
+    var balkenMaterial = new THREE.MeshLambertMaterial({color: 0x3B240B});
+    var balken = new THREE.Mesh(balkenGeometry, balkenMaterial);
+    
+    balken.position.y = 10;
+    
+    
+    var balken1Geometry = new THREE.BoxGeometry(0.5, 1, 7);
+    var balken1Material = new THREE.MeshLambertMaterial({color: 0x3B240B});
+    var balken1 = new THREE.Mesh(balken1Geometry, balken1Material);
+    
+    balken1.position.y = 8;
+    
+    
+    var balken2Geometry = new THREE.BoxGeometry(0.5, 7, 1);
+    var balken2Material = new THREE.MeshLambertMaterial({color: 0x3B240B});
+    var balken2 = new THREE.Mesh(balken2Geometry, balken2Material);
+    
+    balken2.position.z = -2;
+    balken2.position.y = 8;
+    
+    
+    var balken3Geometry = new THREE.BoxGeometry(0.5, 7, 1);
+    var balken3Material = new THREE.MeshLambertMaterial({color: 0x3B240B});
+    var balken3 = new THREE.Mesh(balken3Geometry, balken3Material);
+    
+    balken3.position.z = 2;
+    balken3.position.y = 8;
+    
+    
+    fence = new THREE.Object3D();
+    
+    fence.add(balken);
+    fence.add(balken1);
+    fence.add(balken2);
+    fence.add(balken3);
+   
+    fence.position.y = 0;
+    fence.position.z = 13;
+    fence.scale.x *= 0.12;
+    fence.scale.y *= 0.12;
+    fence.scale.z *= 0.12;
+    fence.rotation.y = Math.PI/2; 
+    
+    return fence;
+}
+
+function SpawnFences(scene){
+    var startX = 13.9;
+    for(var i = 0; i < 32; i++){
+        var fence = makeFence();
+        fence.position.x = startX;
+        
+        scene.add(fence);
+        
+        startX -= 0.9;
+    }
+}
+
