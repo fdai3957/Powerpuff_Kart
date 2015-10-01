@@ -214,7 +214,30 @@ $(function () {
     skyboxMesh.scale.x = -1;
     scene.add(skyboxMesh);
 
-
+    countdownStart = null;
+    displayCountdown = false;
+    var setTime = false;
+    var updateCountdownText  = function()
+    {
+        if(!setTime){
+            countdownStart = new Date();
+            setTime = true;
+        }
+        var now = new Date();
+        if(now.getTime() - countdownStart < 1000){
+            $('#countdownText').text("3");
+        }
+        else if(now.getTime() - countdownStart < 2000){
+            $('#countdownText').text("2");
+        }
+        else if(now.getTime() - countdownStart < 3000){
+            $('#countdownText').text("1");
+        }
+        else{
+            $('#countdownText').css("display","none");
+            displayCountdown = false;
+        }
+    };
 
 
 
@@ -229,6 +252,9 @@ $(function () {
         if (cubeObjectArray.length < 200) {
             scene.add(SpawnCubes());
             scene.add(SpawnCubes());
+        }
+        if(displayCountdown){
+            updateCountdownText();
         }
         
         cubeObjectArray.forEach(cubeObjectCallback);
@@ -410,4 +436,11 @@ function getRandomPosition() {
 // Returns a random number between min (inclusive) and max (exclusive)
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+function OnStartButtonClick(){
+    $('#startButton').remove();
+    displayCountdown = true;
+    $('#countdownText').css("display","inline");
+    $('#countdownAudio')[0].play();
 }

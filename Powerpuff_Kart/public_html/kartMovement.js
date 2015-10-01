@@ -150,8 +150,8 @@ var index2 = 0;
 var carSpeed1 = 0;
 var carSpeed2 = 0;
 
-var mayDrive1 = true;
-var mayDrive2 = true;
+var mayDrive1 = false;
+var mayDrive2 = false;
 
 var playZielAudio = true;
 
@@ -284,8 +284,12 @@ window.addEventListener('keydown', function (event) {
 }, false);
 
 
-//AUDIO
 
+//AUDIO
+function OnCountdownEnded(){
+    mayDrive1 = true;
+    mayDrive2 = true;
+}
 
 
 
