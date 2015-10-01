@@ -43,19 +43,21 @@ $(function () {
         console.log(item, loaded, total);
     };
     
-    var startZiel = null;
+    var startZiel = new THREE.Mesh();
     var startZielLoader = new THREE.JSONLoader(startZielManager);
-    startZielLoader.load('models/startziel4.json',function(geometry, mapNormal){
-        var material = new THREE.MeshLambertMaterial( mapNormal);
+    startZielLoader.load('models/StartZiel.json',function(geometry, materials){
+        var tex = new THREE.ImageUtils.loadTexture('models/StartZielTextur.png');
+        var material = new THREE.MeshBasicMaterial({ map : tex} );
         startZiel = new THREE.Mesh(geometry, material); 
              
         
-        
-        startZiel.position.y +=0.1;
-        startZiel.scale.x *= 10;
-        startZiel.scale.y *= 10;
-        startZiel.scale.z *= 10;
-        startZiel.rotation.y = 5;
+        startZiel.position.x = -8;
+        startZiel.position.y += 10;
+        startZiel.position.z = 1.7;
+        startZiel.scale.x *= 0.3;
+        startZiel.scale.y *= 0.3;
+        startZiel.scale.z *= 0.3;
+        startZiel.rotation.y = -0.5 * Math.PI;;
         scene.add(startZiel);
     });
 
