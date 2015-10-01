@@ -305,7 +305,7 @@ $(function () {
         }
     };
 
-
+    resetButtonDisplayed = false;
 
     //Render Function
     render();
@@ -333,6 +333,10 @@ $(function () {
         
         cubeObjectArrayLeft.forEach(cubeObjectCallbackLeft);
         cubeObjectArrayRight.forEach(cubeObjectCallbackRight);
+        
+        if(!resetButtonDisplayed && car1Finished && car2Finished){
+            $('#resetButton').css("display","inline");
+        }
         
         
         requestAnimationFrame(render);
@@ -462,8 +466,6 @@ function movementSpectator(){
                 zuschauerOrientation[i] = true;
             }
         }
-        
-        
     }
 }
 

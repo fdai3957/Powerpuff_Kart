@@ -36,10 +36,25 @@
                 left: 350px; 
                 top: 100px; 
                 color : white; 
-                background-color: #04B404; 
+                background-color: #4B8A08; 
                 font-weight: bold; 
                 font-size: 20pt; 
                 border-color: #088A08;
+            }
+            
+            #resetButton { 
+                z-index: 10000; 
+                position : absolute; 
+                width: 150px; 
+                height : 50px; 
+                left: 325px; 
+                top: 100px; 
+                color : white; 
+                background-color: #4B8A08; 
+                font-weight: bold; 
+                font-size: 20pt; 
+                border-color: #088A08;
+                display: none;
             }
             
             #countdownText { 
@@ -47,8 +62,8 @@
                 position : absolute; 
                 width: 50px; 
                 height: 50px; 
-                left: 275px; 
-                top: 275px; 
+                left: 375px; 
+                top: 75px; 
                 display: none; 
                 color: white; 
                 font-size: 100px;
@@ -68,6 +83,7 @@
         <div id="time2"></div>
         <div id="countdownText">3</div>
         <button id="startButton" onclick="OnStartButtonClick()">Start</button>
+        <button id="resetButton" onclick="location.reload()">Nochmal</button>
         <audio src="sound/Ziel.mp3" id="zielAudio"></audio>
         <audio src="sound/Auto_Lang.wav" id="autoAudio1" loop></audio>
         <audio src="sound/Auto_Lang.wav" id="autoAudio2" loop></audio>

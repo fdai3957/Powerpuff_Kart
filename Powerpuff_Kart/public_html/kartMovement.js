@@ -157,6 +157,9 @@ var playZielAudio = true;
 
 carMaxSpeed = interpolationPointCount / 5;
 
+car1Finished = false;
+car2Finished = false;
+
 function moveCar(car, number) {
     switch (number) {
         case 1:
@@ -221,11 +224,13 @@ function moveCar(car, number) {
             mayDrive1 = false;
             timeDiv1.innerHTML = "Spieler Rot hatte eine Zeit von " + zeit/1000 + " sec";
             console.log("Spieler 1 hatte eine Zeit von " + zeit/1000 + " sec");
+            car1Finished = true;
         }
         if(runde2 === 3 && mayDrive2){
             mayDrive2 = false;
             timeDiv2.innerHTML = "Spieler Grün hatte eine Zeit von " + zeit/1000 + " sec";
             console.log("Spieler 2 hatte eine Zeit von " + zeit/1000 + " sec");
+            car2Finished = true;
         }
         if(playZielAudio){
             playZielAudio = false;
