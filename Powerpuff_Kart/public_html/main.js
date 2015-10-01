@@ -1,7 +1,8 @@
 $(function () {
     $('#autoAudio1')[0].volume = 0;
     $('#autoAudio2')[0].volume = 0;
-    var windowHeight = 500, windowWidth = 800;
+    $('#zielAudio')[0].volume *= 0.6;
+    var windowHeight = 600, windowWidth = 600;
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(45, windowWidth / windowHeight, 0.1, 500);
@@ -67,15 +68,10 @@ $(function () {
         console.log(item, loaded, total);
     };
 
-    var car1Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
-    var car1Material = new THREE.MeshLambertMaterial({color: 0xff3300});
-    var car1 = new THREE.Mesh(car1Geometry, car1Material);
-
-//    var car1 = null;
+    var car1 = new THREE.Mesh();
     var car1Loader = new THREE.JSONLoader(car1Manager);
-    car1Loader.load('models/AutoRot.json', function (geometry) {
-        var material = new THREE.MeshLambertMaterial({color: 0xff3300});
-        car1 = new THREE.Mesh(geometry, material);
+    car1Loader.load('models/AutoRot_v02.json', function (geometry, materials) {
+        car1 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 
         car1.scale.x *= 0.2;
         car1.scale.z *= 0.2;
@@ -92,15 +88,10 @@ $(function () {
         console.log(item, loaded, total);
     };
 
-    var car2Geometry = new THREE.BoxGeometry(0.8, 0.4, 1.6);
-    var car2Material = new THREE.MeshLambertMaterial({color: 0x228B22});
-    var car2 = new THREE.Mesh(car2Geometry, car2Material);
-
-//    var car2 = null;
+    var car2 = new THREE.Mesh();
     var car2Loader = new THREE.JSONLoader(car2Manager);
-    car2Loader.load('models/AutoGruen.json', function (geometry) {
-        var material = new THREE.MeshLambertMaterial({color: 0x228B22});
-        car2 = new THREE.Mesh(geometry, material);
+    car2Loader.load('models/AutoGruen_v02.json', function (geometry, materials) {
+        car2 = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 
         car2.scale.x *= 0.2;
         car2.scale.z *= 0.2;

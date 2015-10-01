@@ -52,7 +52,11 @@
                 display: none; 
                 color: white; 
                 font-size: 100px;
+            }    
+            #SoundCredits {
+                font-size: 10pt;
             }
+            
         </style>
         <script type="text/javascript" src="three.js"></script>
         <script type="text/javascript" src="jquery-1.11.3.js"></script>
@@ -64,13 +68,22 @@
         <div id="countdownText">3</div>
         <button id="startButton" onclick="OnStartButtonClick()">Start</button>
         <audio src="sound/Ziel.mp3" id="zielAudio"></audio>
-        <audio src="sound/Auto.mp3" id="autoAudio1" loop></audio>
-        <audio src="sound/Auto.mp3" id="autoAudio2" loop></audio>
+        <audio src="sound/Auto_Lang.wav" id="autoAudio1" loop></audio>
+        <audio src="sound/Auto_Lang.wav" id="autoAudio2" loop></audio>
         <audio src="sound/countdown.wav" id="countdownAudio" onended="OnCountdownEnded()"></audio>
         <script type="text/javascript" src="kartMovement.js"></script>
         <script type="text/javascript" src="Projector.js"></script>
         <script type="text/javascript" src="CanvasRenderer.js"></script>
         <script type="text/javascript" src="OBJLoader.js"></script>
         <script type="text/javascript" src="main.js"></script>
+        <p id="SoundCredits">Sound-Credits:
+           <br><br> 
+           countdown von Robinhood76 <br>
+           01818 start beeps.wav<br>
+           <a href="http://www.freesound.org/people/Robinhood76/sounds/97879/"> http://www.freesound.org/people/Robinhood76/sounds/97879/</a><br>
+           <br>
+           Finish sound<br>
+           piglevelwin2.mp3 von Tuudurt<br>
+           <a href="http://www.freesound.org/people/Tuudurt/sounds/275104/">http://www.freesound.org/people/Tuudurt/sounds/275104/</a></p>
     </body>
 </html>
