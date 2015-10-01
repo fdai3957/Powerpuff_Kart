@@ -133,21 +133,46 @@ $(function () {
 
     scene.add(plane);
 
-    var tonneManager = new THREE.LoadingManager();
-    tonneManager.onProgress = function(item, loaded, total){
+    var tonne1Manager = new THREE.LoadingManager();
+    tonne1Manager.onProgress = function(item, loaded, total){
         console.log(item, loaded, total);
     };
 
-    var tonne = new THREE.Mesh();
-    var loader = new THREE.JSONLoader(tonneManager);
-    loader.load('models/Tonne.json', function (geometry) {
+    var tonne1 = new THREE.Mesh();
+    var tonne1loader = new THREE.JSONLoader(tonne1Manager);
+    tonne1loader.load('models/Tonne.json', function (geometry) {
         var material = new THREE.MeshLambertMaterial({color: 0x3d3d3d});
-        tonne = new THREE.Mesh(geometry, material);
+        tonne1 = new THREE.Mesh(geometry, material);
 
-        tonne.position.x += 0.2;
-        tonne.position.z += 0.2;
+        tonne1.position.x += 3.5;
+        tonne1.position.z += 3;
+        
+        tonne1.scale.x *= 0.5;
+        tonne1.scale.y *= 0.5;
+        tonne1.scale.z *= 0.5;
 
-        scene.add(tonne);
+        scene.add(tonne1);
+    });
+    
+    var tonne2Manager = new THREE.LoadingManager();
+    tonne2Manager.onProgress = function(item, loaded, total){
+        console.log(item, loaded, total);
+    };
+
+    var tonne2 = new THREE.Mesh();
+    var tonne2loader = new THREE.JSONLoader(tonne2Manager);
+    tonne2loader.load('models/Tonne.json', function (geometry) {
+        var material = new THREE.MeshLambertMaterial({color: 0x3d3d3d});
+        tonne2 = new THREE.Mesh(geometry, material);
+
+        tonne2.position.x -= 3.5;
+        tonne2.position.z += 3;
+        
+        tonne2.scale.x *= 0.5;
+        tonne2.scale.y *= 0.5;
+        tonne2.scale.z *= 0.5;
+
+        scene.add(tonne2);
     });
 
     var cubeObjectCallback = function (element, index, array) {
