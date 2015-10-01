@@ -1,6 +1,7 @@
 $(function () {
     $('#autoAudio1')[0].volume = 0;
     $('#autoAudio2')[0].volume = 0;
+    $('#zielAudio')[0].volume *= 0.6;
     var windowHeight = 600, windowWidth = 600;
 
     var scene = new THREE.Scene();
