@@ -329,6 +329,7 @@ $(function () {
     zuschauerOrientation = [];
     zuschauerArray = [];
     multiplySpectator(scene);
+    setSpectatorPosition();
 
     //Light
     var spotLight = new THREE.SpotLight(0xffffff);
@@ -504,11 +505,11 @@ function makeSpectator() {
     zuschauerObj.add(hals);
     zuschauerObj.add(arm);
     zuschauerObj.add(arml);
-//    zuschauerObj.scale.x *= 0.1;
-//    zuschauerObj.scale.y *= 0.1;
-//    zuschauerObj.scale.z *= 0.1;
-    zuschauerObj.position.x = -10;
-    zuschauerObj.position.z = 10;
+    zuschauerObj.scale.x *= 0.1;
+    zuschauerObj.scale.y *= 0.1;
+    zuschauerObj.scale.z *= 0.1;
+    zuschauerObj.position.x = -5;
+    zuschauerObj.position.z = 5;
     zuschauerObj.rotation.y = Math.PI/2;
 
     return zuschauerObj;
@@ -517,7 +518,7 @@ function makeSpectator() {
 //Zuschauer vermehren 
 function multiplySpectator(scene){
     
-    for(var i=0; i<=40; i++){
+    for(var i=0; i<81; i++){
         
         var zuschauer = makeSpectator();
         
@@ -537,21 +538,42 @@ function multiplySpectator(scene){
     }
 }
 
+function setSpectatorPosition(){
+    var locationArray = [];
+    for(var i = -5; i > -14;i--){
+        for(var j = 4; j < 13; j++){
+            locationArray.push([i,j]);
+        }
+    }
+    
+    for(var i = 0; i < zuschauerArray.length;i++){
+        zuschauerArray[i].position.x = locationArray[i][0];
+        zuschauerArray[i].position.z = locationArray[i][1];
+    }
+}
 
+//zufälliger Y-Wert für Zuschauerposition
 function getRandomY(){
-    return THREE.Math.randFloat(0, 1);
+    return THREE.Math.randFloat(0, 0.5);
 }
 
 //Zuschauer Bewegung
 function movementSpectator(){
-    var jumpSpeed = 0.1;
+    if(!spawnCubes){
+        var jumpSpeed = 0.05;
+        var maxY = 0.5;
+    }
+    else{
+        var jumpSpeed = 0.075;
+        var maxY = 0.75;
+    }
     
     for( var i=0; i < zuschauerArray.length; i++){
         
         //true = up, false = down
         if(zuschauerOrientation[i]){
             zuschauerArray[i].position.y += jumpSpeed;
-            if(zuschauerArray[i].position.y >= 1){
+            if(zuschauerArray[i].position.y >= maxY){
                 zuschauerOrientation[i] = false;
             }
         }
@@ -563,6 +585,11 @@ function movementSpectator(){
         }
     }
 }
+
+
+
+
+//### PARTIKEL-TONNEN ###>
 
 //Cube particles
 var colorArray = new Array({color: 0xf2ff00}, {color: 0xff7200}, {color: 0xFF0000}, {color: 0x64FE2E}, {color: 0x0040FF});
