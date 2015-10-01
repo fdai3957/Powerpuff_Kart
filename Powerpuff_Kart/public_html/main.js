@@ -25,10 +25,11 @@ $(function () {
         console.log(item, loaded, total);
     };
 
-    var kartbahn = null;
+    var kartbahn = new THREE.Mesh();
     var kartbahnLoader = new THREE.JSONLoader(kartbahnManager);
     kartbahnLoader.load('models/KartbahnFertig1.json', function (geometry) {
-        var material = new THREE.MeshLambertMaterial({color: 0x3d3d3d});
+        var tex = new THREE.ImageUtils.loadTexture('models/KartbahnFertig2.png');
+        var material = new THREE.MeshBasicMaterial({map:tex});
         kartbahn = new THREE.Mesh(geometry, material);
 
         kartbahn.position.y += 0.1;
@@ -46,7 +47,7 @@ $(function () {
     
     var startZiel = new THREE.Mesh();
     var startZielLoader = new THREE.JSONLoader(startZielManager);
-    startZielLoader.load('models/StartZiel.json',function(geometry, materials){
+    startZielLoader.load('models/StartZiel.json',function(geometry){
         var tex = new THREE.ImageUtils.loadTexture('models/StartZielTextur_1.png');
         var material = new THREE.MeshBasicMaterial({ map : tex} );
         startZiel = new THREE.Mesh(geometry, material); 
@@ -147,13 +148,24 @@ $(function () {
 
     //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
-    var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+    var planeMaterial = new THREE.MeshLambertMaterial({color: 0x4B8A08});
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
 
     plane.rotation.x = -0.5 * Math.PI;
     plane.receiveShadow = true;
 
     scene.add(plane);
+    
+    var planeGrauGeometry = new THREE.PlaneGeometry(10, 10, 10);
+    var planeGrauMaterial = new THREE.MeshLambertMaterial({color: 0x585858});
+    var planeGrau = new THREE.Mesh(planeGrauGeometry, planeMaterial);
+    
+    planeGrau.rotation.x = -0.5 * Math.PI;
+    planeGrau.receiveShadow = true;
+    planeGrau.position.x = -9;
+    planeGrau.position.z = 8;
+    planeGrau.position.y = 0.1;
+    scene.add(planeGrau);
 
     var tonne1Manager = new THREE.LoadingManager();
     tonne1Manager.onProgress = function(item, loaded, total){
