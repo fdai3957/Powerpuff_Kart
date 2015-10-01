@@ -168,7 +168,7 @@ $(function () {
     //Light
     var spotLight = new THREE.SpotLight(0xffffff);
     spotLight.castShadow = true;
-    spotLight.position.set(30, 30, 50);
+    spotLight.position.set(10, 50, 10);
 
     scene.add(spotLight);
 
@@ -304,21 +304,21 @@ function makeSpectator() {
     kopf.position.y = 6.25;
 
 
-    var armGeometry = new THREE.BoxGeometry(2.5, 4, 0.5);
+    var armGeometry = new THREE.BoxGeometry(1, 4, 0.5);
     var armMaterial = new THREE.MeshLambertMaterial({color: 0xFFE5B2});
     var arm = new THREE.Mesh(armGeometry, armMaterial);
 
     arm.position.z = 1.5;
-    arm.position.x = -1;
+    arm.position.x = 0;
     arm.position.y = 5;
 
 
-    var armlGeometry = new THREE.BoxGeometry(2.5, 4, 0.5);
+    var armlGeometry = new THREE.BoxGeometry(1, 4, 0.5);
     var armlMaterial = new THREE.MeshLambertMaterial({color: 0xFFE5B2});
     var arml = new THREE.Mesh(armlGeometry, armlMaterial);
 
     arml.position.z = -1.5;
-    arml.position.x = 1;
+    arml.position.x = 0;
     arml.position.y = 5;
 
 
@@ -328,10 +328,12 @@ function makeSpectator() {
     zuschauerObj.add(hals);
     zuschauerObj.add(arm);
     zuschauerObj.add(arml);
-    zuschauerObj.scale.x *= 0.1;
-    zuschauerObj.scale.y *= 0.1;
-    zuschauerObj.scale.z *= 0.1;
-    zuschauerObj.position.x = 10;
+//    zuschauerObj.scale.x *= 0.1;
+//    zuschauerObj.scale.y *= 0.1;
+//    zuschauerObj.scale.z *= 0.1;
+    zuschauerObj.position.x = -10;
+    zuschauerObj.position.z = 10;
+    zuschauerObj.rotation.y = Math.PI/2;
 
     return zuschauerObj;
 }
