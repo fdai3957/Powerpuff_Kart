@@ -47,14 +47,14 @@ $(function () {
     var startZiel = new THREE.Mesh();
     var startZielLoader = new THREE.JSONLoader(startZielManager);
     startZielLoader.load('models/StartZiel.json',function(geometry, materials){
-        var tex = new THREE.ImageUtils.loadTexture('models/StartZielTextur.png');
+        var tex = new THREE.ImageUtils.loadTexture('models/StartZielTextur_1.png');
         var material = new THREE.MeshBasicMaterial({ map : tex} );
         startZiel = new THREE.Mesh(geometry, material); 
              
         
-        startZiel.position.x = -8;
-        startZiel.position.y += 10;
-        startZiel.position.z = 1.7;
+        startZiel.position.x = -0.5;
+        startZiel.position.y += 6;
+        startZiel.position.z = -5.5;
         startZiel.scale.x *= 0.3;
         startZiel.scale.y *= 0.3;
         startZiel.scale.z *= 0.3;
