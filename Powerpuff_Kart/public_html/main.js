@@ -2,7 +2,7 @@ $(function () {
     $('#autoAudio1')[0].volume = 0;
     $('#autoAudio2')[0].volume = 0;
     $('#zielAudio')[0].volume *= 0.6;
-    var windowHeight = 600, windowWidth = 600;
+    var windowHeight = 500, windowWidth = 800;
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(45, windowWidth / windowHeight, 0.1, 500);
