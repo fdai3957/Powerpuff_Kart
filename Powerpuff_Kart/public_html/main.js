@@ -263,6 +263,28 @@ $(function () {
         scene.add(steinMittel);
     });
     
+    //Brunnen
+    var brunnenManager = new THREE.LoadingManager();
+    brunnenManager.onProgress = function (item, loaded, total) {
+            console.log(item, loaded, total);
+    };
+    
+    var brunnen = new THREE.Mesh();
+    var loader = new THREE.JSONLoader(brunnenManager);
+    loader.load('models/Brunnen.json', function(geometry, materials) {
+        brunnen = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+        
+          brunnen.position.x +=10;
+          brunnen.position.z -=10;
+          brunnen.position.y +=0;
+          
+          brunnen.scale.x *= 1.2;
+          brunnen.scale.y *= 1.2;
+          brunnen.scale.z *= 1.2;
+        
+        scene.add(brunnen);
+    });
+    
 
     //Ground
     var planeGeometry = new THREE.PlaneGeometry(30, 30, 30);
