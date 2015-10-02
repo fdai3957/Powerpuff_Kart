@@ -319,6 +319,7 @@ function OnStartButtonClick(){
     $('#startButton').remove();
     displayCountdown = true;
     $('#countdownText').css("display","inline");
+    $('#erklärung').css("display","none");
     $('#countdownAudio')[0].play();
     $('#autoAudio1')[0].play();
     $('#autoAudio2')[0].play();
