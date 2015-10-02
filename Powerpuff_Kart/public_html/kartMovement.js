@@ -128,7 +128,6 @@ fillKeyframesArray();
 fillPositionArray1();
 fillPositionArray2();
 
-
 //###########################################
 
 //Zeitmessung
@@ -139,7 +138,6 @@ var runde1 = 0;
 var runde2 = 0;
 var lastIndex1 = 0;
 var lastIndex2 = 0;
-
 
 //##########################################
 
@@ -210,8 +208,6 @@ function moveCar(car, number) {
                 console.log("Runde: " + runde2);
             }
             break;
-
-
     }
 
     var timeDiv1 = document.getElementById("time1");
@@ -238,35 +234,8 @@ function moveCar(car, number) {
             spawnCubes = true;
         }
     }
-    //console.log(car.rotation.x + ", " + car.rotation.y + ", " + car.rotation.z);
-    //console.log(car.position.x + ", " + car.position.z);
 }
 
-//###########################################
-
-
-
-function logPositionArray() {
-    for (var i = 0; i < positionArray1.length; i++) {
-        var text = "i=" + i + "; ";
-        for (var j = 0; j < positionArray1[i].length; j++) {
-            text += positionArray1[i][j] + ", ";
-        }
-        //console.log(text);
-    }
-}
-//logPositionArray();
-
-function logKeyArray() {
-    for (var i = 0; i < keyframesArray1.length; i++) {
-        var text = "i=" + i + "; ";
-        for (var j = 0; j < keyframesArray1[i].length; j++) {
-            text += keyframesArray1[i][j] + ", ";
-        }
-        //console.log(text);
-    }
-}
-logKeyArray();
 //###########################################
 
 var Key = {
@@ -291,9 +260,9 @@ window.addEventListener('keydown', function (event) {
     Key.onKeydown(event);
 }, false);
 
+//###########################################
 
-
-//AUDIO
+//AUTO - AUDIO
 function OnCountdownEnded(){
     mayDrive1 = true;
     mayDrive2 = true;

@@ -1,10 +1,25 @@
-function getCameraTarget(scene){
+function getCamera(scene){
     var cameraTarget = new THREE.Mesh();
     cameraTarget.position.x = 0;
     cameraTarget.position.y = 0.25;
     cameraTarget.position.z = 0;
     scene.add(cameraTarget);
-    return cameraTarget;
+    
+    //Camera Position
+    var camera = new THREE.PerspectiveCamera(45, windowWidth / windowHeight, 0.1, 500);
+    cameraPivot = new THREE.Object3D();
+    cameraPivot.add(camera);
+    scene.add(cameraPivot);
+
+    cameraPivot.position.x = -1.7;
+    cameraPivot.position.y = 15;
+    cameraPivot.position.z = -30;
+    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI/2.05);
+    cameraPivot.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI/1.6);
+    cameraPivot.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI/40);
+
+    camera.lookAt(cameraTarget.position);
+    return camera;
 }
 
 function addKartbahn(scene){
@@ -623,7 +638,22 @@ function multiplySpectator(scene){
     }
 }
 
+function setSpectatorPosition(){
+    var locationArray = [];
+    for(var i = -5; i > -14;i--){
+        for(var j = 4; j < 13; j++){
+            locationArray.push([i,j]);
+        }
+    }
+    
+    for(var i = 0; i < zuschauerArray.length;i++){
+        zuschauerArray[i].position.x = locationArray[i][0];
+        zuschauerArray[i].position.z = locationArray[i][1];
+    }
+}
+
 //zufälliger Y-Wert für Zuschauerposition
 function getRandomY(){
     return THREE.Math.randFloat(0, 0.5);
 }
+
