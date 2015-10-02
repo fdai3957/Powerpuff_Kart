@@ -3,88 +3,14 @@
         <title>THREE.JS Übung</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body { 
-                margin: 0; 
-                font-family: Arial; 
-                font-size: 15pt; 
-                font-weight: bold; 
-            }
-            
-            canvas { width: 100%; height: 100% }
-            
-            #time1 { z-index: 10000; 
-                     position : absolute; 
-                     left: 30px; 
-                     top: 30px; 
-                     color: white;
-            }
-            
-            #time2 { 
-                z-index: 10000; 
-                position : absolute; 
-                left: 30px; 
-                top: 55px; 
-                color: white;
-            }
-            
-            #startButton { 
-                z-index: 10000; 
-                position : absolute; 
-                width: 100px; 
-                height : 50px; 
-                left: 350px; 
-                top: 100px; 
-                color : white; 
-                background-color: #4B8A08; 
-                font-weight: bold; 
-                font-size: 20pt; 
-                border-color: #088A08;
-            }
-            
-            #resetButton { 
-                z-index: 10000; 
-                position : absolute; 
-                width: 150px; 
-                height : 50px; 
-                left: 325px; 
-                top: 100px; 
-                color : white; 
-                background-color: #4B8A08; 
-                font-weight: bold; 
-                font-size: 20pt; 
-                border-color: #088A08;
-                display: none;
-            }
-            
-            #countdownText { 
-                z-index: 10000; 
-                position : absolute; 
-                width: 50px; 
-                height: 50px; 
-                left: 375px; 
-                top: 75px; 
-                display: none; 
-                color: white; 
-                font-size: 100px;
-            } 
-            
-            #SoundCredits {
-                font-size: 10pt;
-            }
-            
-            #erklärung {
-                z-index: 10000; 
-                position : absolute; 
-                left: 190px; 
-                top: 30px;
-                width: 420px;
-                color: white;               
-            }
-            
-        </style>
-        <script type="text/javascript" src="three.js"></script>
-        <script type="text/javascript" src="jquery-1.11.3.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <script type="text/javascript" src="lib/three.js"></script>
+        <script type="text/javascript" src="lib/Projector.js"></script>
+        <script type="text/javascript" src="lib/CanvasRenderer.js"></script>
+        <script type="text/javascript" src="lib/OBJLoader.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.11.3.js"></script>
     </head>
     <body>
         <div id="webGL-container"></div>
@@ -92,19 +18,20 @@
         <div id="time2"></div>
         <div id="erklärung">Spieler Rot wird mit der Pfeiltaste gespielt<br> Spieler Grün wird mit der Leertaste gespielt</div>
         <div id="countdownText">3</div>
+        
         <button id="startButton" onclick="OnStartButtonClick()">Start</button>
         <button id="resetButton" onclick="location.reload()">Nochmal</button>
+        
         <audio src="sound/Ziel.mp3" id="zielAudio"></audio>
         <audio src="sound/Auto_Lang.wav" id="autoAudio1" loop></audio>
         <audio src="sound/Auto_Lang.wav" id="autoAudio2" loop></audio>
         <audio src="sound/countdown.wav" id="countdownAudio" onended="OnCountdownEnded()"></audio>
-        <script type="text/javascript" src="kartMovement.js"></script>
-        <script type="text/javascript" src="Projector.js"></script>
-        <script type="text/javascript" src="CanvasRenderer.js"></script>
-        <script type="text/javascript" src="OBJLoader.js"></script>
-        <script type="text/javascript" src="SceneObjects.js"></script>
-        <script type="text/javascript" src="Particles.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+        
+        <script type="text/javascript" src="js/kartMovement.js"></script>
+        <script type="text/javascript" src="js/SceneObjects.js"></script>
+        <script type="text/javascript" src="js/Particles.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
         <p id="SoundCredits">Sound-Credits:
            <br><br> 
            countdown <br>
