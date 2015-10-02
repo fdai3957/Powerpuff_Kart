@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Powerpuff Kart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <script type="text/javascript" src="lib/three.js"></script>
+        <script type="text/javascript" src="lib/Projector.js"></script>
+        <script type="text/javascript" src="lib/CanvasRenderer.js"></script>
+        <script type="text/javascript" src="lib/OBJLoader.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.11.3.js"></script>
+    </head>
+    <body>
+        <div id="webGL-container"></div>
+        <div id="time1"></div>
+        <div id="time2"></div>
+        <div id="erklärung">Spieler Rot wird mit der Pfeiltaste gespielt<br> Spieler Grün wird mit der Leertaste gespielt</div>
+        <div id="countdownText">3</div>
+        
+        <button id="startButton" onclick="OnStartButtonClick()">Start</button>
+        <button id="resetButton" onclick="location.reload()">Nochmal</button>
+        
+        <audio src="sound/Ziel.mp3" id="zielAudio"></audio>
+        <audio src="sound/Auto_Lang.wav" id="autoAudio1" loop></audio>
+        <audio src="sound/Auto_Lang.wav" id="autoAudio2" loop></audio>
+        <audio src="sound/countdown.wav" id="countdownAudio" onended="OnCountdownEnded()"></audio>
+        
+        <script type="text/javascript" src="js/kartMovement.js"></script>
+        <script type="text/javascript" src="js/SceneObjects.js"></script>
+        <script type="text/javascript" src="js/Particles.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        
+        <p class="SoundCredits">
+            Sound-Credits:
+        </p>
+        <table class="SoundCredits">
+            <tr>
+                <td>countdown</td>
+                <td>Finish sound</td>
+            </tr>
+            <tr>
+                <td>01818 start beeps.wav von Robinhood76</td>
+                <td>piglevelwin2.mp3 von Tuudurt</td>
+            </tr>
+            <tr>
+                <td><a href="http://www.freesound.org/people/Robinhood76/sounds/97879/"> http://www.freesound.org/people/Robinhood76/sounds/97879/</a></td>
+                <td><a href="http://www.freesound.org/people/Tuudurt/sounds/275104/">http://www.freesound.org/people/Tuudurt/sounds/275104/</a></td>
+            </tr>
+        </table>
+    </body>
+</html>

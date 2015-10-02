@@ -131,8 +131,8 @@ fillPositionArray2();
 //###########################################
 
 //Zeitmessung
-var startDate = new Date();
-startzeit = startDate.getTime();
+
+startzeit = null;
 
 var runde1 = 0;
 var runde2 = 0;
@@ -237,6 +237,8 @@ function moveCar(car, number) {
 }
 
 //###########################################
+//Tastatureingabe mit Hilfe von: http://nokarma.org/2011/02/27/javascript-game-development-keyboard-input/
+
 
 var Key = {
     _pressed: {},
@@ -264,6 +266,8 @@ window.addEventListener('keydown', function (event) {
 
 //AUTO - AUDIO
 function OnCountdownEnded(){
+    var startDate = new Date();
+    startzeit = startDate.getTime();
     mayDrive1 = true;
     mayDrive2 = true;
 }

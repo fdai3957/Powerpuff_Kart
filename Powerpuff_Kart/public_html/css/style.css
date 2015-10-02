@@ -27,7 +27,7 @@ canvas { width: 100%; height: 100% }
     position : absolute; 
     width: 100px; 
     height : 50px; 
-    left: 350px; 
+    left: 670px; 
     top: 100px; 
     color : white; 
     background-color: #4B8A08; 
@@ -41,7 +41,7 @@ canvas { width: 100%; height: 100% }
     position : absolute; 
     width: 150px; 
     height : 50px; 
-    left: 325px; 
+    left: 645px; 
     top: 100px; 
     color : white; 
     background-color: #4B8A08; 
@@ -56,22 +56,23 @@ canvas { width: 100%; height: 100% }
     position : absolute; 
     width: 50px; 
     height: 50px; 
-    left: 375px; 
+    left: 695px; 
     top: 75px; 
     display: none; 
     color: white; 
     font-size: 100px;
 } 
 
-#SoundCredits {
+.SoundCredits {
     font-size: 10pt;
 }
 
 #erklärung {
     z-index: 10000; 
     position : absolute; 
-    left: 190px; 
+    left: 510px; 
     top: 30px;
     width: 420px;
-    color: white;               
+    color: white;
+    text-shadow: 1px 1px black;
 }
